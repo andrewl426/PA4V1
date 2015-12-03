@@ -11,6 +11,7 @@
 #include <unordered_map>
 #include <stack>
 
+using namespace std; //Hope your ok with this shortcut
 using std::cout;
 using std::cin;
 using std::endl;
