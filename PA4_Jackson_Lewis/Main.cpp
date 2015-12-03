@@ -1,10 +1,36 @@
 // ANDREW; I think we should use main only to open and close files, and to create the network--- I think all real logic should be handled inside of networks tick()
 //			also, is an output file required? I cant find anything about it in the PA 4 pdf...
+//Justin: I don't think an outlook file is required. Since we are already doing cout.. adding fout might be work it.
 
 #include "Includes.h"
 
 int main(int argc, char *argv[])
 {
+	string filename;
+
+	for (int i = 1; i < argc; i++) //argv is much easier to deal with as a string
+	{
+		filename = argv[i];
+	}
+	if (filename == "")//if argv is null/empty prompt user for a filename
+	{
+		cout << "Enter a jobs filename: ";
+		cin >> filename;
+		cout << endl;
+	}
+
+	ifstream input_file{ filename };
+
+
+	if (input_file.good() == true)
+	{
+
+
+
+	}
+
+
+
 // OKAY, I tried to make a mainline-- but handling the argc/argv[] stuff kept breaking, even with no arguments argc was apparently not 0..
 // I was also getting a nullptr crash or something, so I commented out my logic--- something is wrong with it, Im not opposed to starting 
 // the mainline over again.
