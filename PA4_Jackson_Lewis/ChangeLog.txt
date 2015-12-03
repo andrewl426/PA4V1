@@ -24,3 +24,8 @@ Andrew - Made a mainline
 			Mainline works. Currently just opens the file in argv or prompts for a new file.
 		- Set up github
 			I'll give you a quick tutorial over ts.
+
+12/3/15
+
+1:29pm
+Justin - With Andrews help, the Git Repo is set up and we can both push and pull --- No code changes.
