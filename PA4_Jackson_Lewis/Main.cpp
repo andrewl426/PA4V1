@@ -2,6 +2,16 @@
 //			also, is an output file required? I cant find anything about it in the PA 4 pdf...
 //Justin: I don't think an outlook file is required. Since we are already doing cout.. adding fout might be work it.
 
+
+
+
+
+// TEST
+
+
+
+
+
 #include "Includes.h"
 
 int main(int argc, char *argv[])
