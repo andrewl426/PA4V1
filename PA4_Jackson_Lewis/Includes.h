@@ -3,6 +3,7 @@
 #ifndef INCLUDES_H
 #define INCLUDES_H
 
+// Includes
 #include <string>
 #include <vector>
 #include <queue>
@@ -11,9 +12,26 @@
 #include <unordered_map>
 #include <stack>
 
-using namespace std; //Hope your ok with this shortcut
+// Using
+using namespace std; //Hope your ok with this shortcut // its fine
 using std::cout;
 using std::cin;
 using std::endl;
+
+// Utility Methods
+class util_meths
+{
+public:
+	string _filename;
+
+	// Constructor
+	util_meths();
+
+	// Setter
+	void util_meths::setFilename(string new_filename);
+
+	// Methods
+	void cfout(string str);
+};
 
 #endif
