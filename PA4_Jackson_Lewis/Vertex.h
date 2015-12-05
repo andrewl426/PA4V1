@@ -23,10 +23,10 @@ public:
 	// Destructor
 
 	// Getters
-	const int vertex::get_id();
-	const unordered_map<vertex*, int> get_edges();
-	const int vertex::get_load_factor();
-	const int getPathWeight();
+	int vertex::get_id() const;
+	unordered_map<vertex*, int> get_edges();
+	int vertex::get_load_factor() const;
+	int getPathWeight() const;
 
 	// Setters
 	void set_id(int new_id);

@@ -22,11 +22,11 @@ public:
 	// Destructor
 
 	// Getters
-	const stack<vertex*> get_vertices();
-	const int get_distance();
+	stack<vertex*> get_vertices() const;
+	int get_distance_traveled() const;
 
 	// Setters
-	void set_vertices(stack<vertex*> _vertices);
+	void set_vertices(stack<vertex*> new_vertices);
 	void set_distance_traveled(int new_distance_traveled);
 
 	// Methods

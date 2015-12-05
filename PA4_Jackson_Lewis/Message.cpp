@@ -22,29 +22,29 @@ message::message(queue<packet> new_packets, vertex* new_starting_vertex, vertex*
 // Getters
 const queue<packet> message::get_packets()
 {
-	return queue<packet>();
+	return _packets;
 }
 const vertex* message::get_starting_vertex()
 {
-	return nullptr;
+	return _starting_vertex;
 }
 const vertex* message::get_ending_vertex()
 {
-	return nullptr;
+	return _ending_vertex;
 }
 
 // Setters
 void message::set_packets(queue<packet> new_packets)
 {
-
+	_packets = new_packets;
 }
 void message::set_starting_vertex(vertex * new_starting_vertex)
 {
-
+	_starting_vertex = new_starting_vertex;
 }
 void message::set_ending_vertex(vertex * new_ending_vertex)
 {
-
+	_ending_vertex = new_ending_vertex;
 }
 
 // Methods

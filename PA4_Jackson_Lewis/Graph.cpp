@@ -1,22 +1,19 @@
 // Includes
 #include "Graph.h"
 
-
+// Overloaders
 int operator==(const vertex &lhs, const vertex &rhs)
 {
 	return lhs.get_id() == rhs.get_id();
 }
-
 bool operator<(const vertex &lhs, const vertex &rhs)
 {
 	return lhs.get_id() < rhs.get_id();
 }
-
 bool operator>(const vertex &lhs, const vertex &rhs)
 {
 	return lhs.get_id() > rhs.get_id();
 }
-
 
 // Constructors
 graph::graph()
@@ -35,13 +32,13 @@ graph::graph(unordered_map<int, vertex> new_vertices)
 // Getters
 const unordered_map<int, vertex> graph::get_vertices()
 {
-	return unordered_map<int, vertex>();
+	return _vertices;
 }
 
 // Setters
 void graph::set_vertices(unordered_map<int, vertex> new_vertices)
 {
-
+	_vertices = new_vertices;
 }
 
 // Methods
