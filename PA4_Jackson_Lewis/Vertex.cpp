@@ -20,19 +20,19 @@ vertex::vertex(int new_id, unordered_map<vertex*, int> new_edges, int new_load_f
 // Destructor
 
 // Getters
-const int vertex::get_id()
+int vertex::get_id() const
 {
 	return _id;
 }
-const unordered_map<vertex*, int> vertex::get_edges()
+unordered_map<vertex*, int> vertex::get_edges()
 {
 	return _edges;
 }
-const int vertex::get_load_factor()
+int vertex::get_load_factor() const
 {
 	return _load_factor;
 }
-const int vertex::getPathWeight()
+int vertex::getPathWeight() const
 {
 	return _path_weight;
 }
