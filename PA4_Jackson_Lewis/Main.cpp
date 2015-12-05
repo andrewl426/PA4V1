@@ -1,23 +1,28 @@
 // ANDREW; I think we should use main only to open and close files, and to create the network--- I think all real logic should be handled inside of networks tick()
 //			also, is an output file required? I cant find anything about it in the PA 4 pdf...
 //Justin: I don't think an outlook file is required. Since we are already doing cout.. adding fout might be work it.
-//testing git
-
-
-
-
-
-// TEST
-
-
-
-
+//Justin: Im gonna make a cout/fout function that has a filename var built in.
 
 #include "Includes.h"
 
 int main(int argc, char *argv[])
 {
 	string filename;
+	
+	// BEGIN util_meths EXAMPLE
+	// ----	We should most likely place this function inside of the network driver 
+	// ----	function that actually runs the simulation, and just pass the filename in there
+	// ---- I can template this later if we want
+
+	// declare var
+	util_meths cfout;
+
+	// set filename
+	cfout.setFilename("FILE_NAME_HERE.txt");
+	
+	// prints usage
+	cfout.cfout("You put a string here;\nUsing 'backslash n' allows you to do new lines.\n");
+	// END  util_meths EXAMPLE
 
 	for (int i = 1; i < argc; i++) //argv is much easier to deal with as a string
 	{
