@@ -72,7 +72,7 @@ namespace std {
 	struct hash<vertex>
 	{
 		//provide a hash (convert grocery item into integer)
-		std::size_t operator()(const vertex& item) const
+		size_t operator()(const vertex& item) const
 		{
 			size_t hash_val = 0;
 

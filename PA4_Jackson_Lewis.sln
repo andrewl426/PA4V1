@@ -5,6 +5,11 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PA4_Jackson_Lewis", "PA4_Jackson_Lewis\PA4_Jackson_Lewis.vcxproj", "{8C76657B-4A6A-442C-8C29-97A6A37F1767}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{771CAE0A-B366-4353-A2CF-82BABF1758D9}"
+	ProjectSection(SolutionItems) = preProject
+		PA4_Jackson_Lewis\Includes.cpp = PA4_Jackson_Lewis\Includes.cpp
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

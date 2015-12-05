@@ -8,7 +8,7 @@ message::message()
 	//_starting_vertex = empty!
 	//_ending_vertex = empty!
 }
-message::message(std::queue<packet> new_packets, vertex* new_starting_vertex, vertex* new_ending_vertex)
+message::message(queue<packet> new_packets, vertex* new_starting_vertex, vertex* new_ending_vertex)
 {
 	_packets = new_packets;
 	_starting_vertex = new_starting_vertex;
@@ -20,9 +20,9 @@ message::message(std::queue<packet> new_packets, vertex* new_starting_vertex, ve
 // Destructor
 
 // Getters
-const std::queue<packet> message::get_packets()
+const queue<packet> message::get_packets()
 {
-	return std::queue<packet>();
+	return queue<packet>();
 }
 const vertex* message::get_starting_vertex()
 {
@@ -34,7 +34,7 @@ const vertex* message::get_ending_vertex()
 }
 
 // Setters
-void message::set_packets(std::queue<packet> new_packets)
+void message::set_packets(queue<packet> new_packets)
 {
 
 }

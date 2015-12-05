@@ -8,7 +8,7 @@ vertex::vertex()
 	//_edges = empty!
 	_load_factor = 0;
 }
-vertex::vertex(int new_id, std::unordered_map<vertex*, int> new_edges, int new_load_factor)
+vertex::vertex(int new_id, unordered_map<vertex*, int> new_edges, int new_load_factor)
 {
 	_id = new_id;
 	_edges = new_edges;
@@ -27,7 +27,7 @@ int vertex::get_id() const
 
 unordered_map<vertex*, int> vertex::get_edges()
 {
-	return std::unordered_map<vertex*, int>();
+	return unordered_map<vertex*, int>();
 }
 int vertex::get_load_factor() const
 {
@@ -44,7 +44,7 @@ void vertex::set_id(int new_id)
 {
 
 }
-void vertex::set_edges(std::unordered_map<vertex*, int> new_edges)
+void vertex::set_edges(unordered_map<vertex*, int> new_edges)
 {
 
 }

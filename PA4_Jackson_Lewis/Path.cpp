@@ -18,9 +18,9 @@ path::path(std::stack<vertex*> new_vertices, int new_distance_traveled)
 // Destructor
 
 // Getters
-const std::stack<vertex*> path::get_vertices()
+const stack<vertex*> path::get_vertices()
 {
-	return std::stack<vertex*>();
+	return stack<vertex*>();
 }
 const int path::get_distance()
 {
