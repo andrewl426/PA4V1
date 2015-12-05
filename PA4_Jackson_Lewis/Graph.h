@@ -24,7 +24,7 @@ public:
 	// Destructor
 
 	// Getters --- ADDITIONAL GETTERS ARE NEEDED FOR MANIPULATION OF INDIVIDUAL VERTICES probably - get_vertex_at(key), returning value
-	unordered_map<int, vertex> get_vertices() const;
+	const unordered_map<int, vertex> get_vertices();
 
 	// Setters --- ADDITIONAL SETTERS ARE NEEDED FOR MANIPULATION OF INDIVIDUAL VERTICES probably - set_vertex_at(key, value)
 	void set_vertices(unordered_map<int, vertex> new_vertices);

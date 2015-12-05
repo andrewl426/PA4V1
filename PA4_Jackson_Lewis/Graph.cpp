@@ -16,7 +16,7 @@ graph::graph(unordered_map<int, vertex> new_vertices)
 // Destructor
 
 // Getters
-unordered_map<int, vertex> graph::get_vertices() const 
+const unordered_map<int, vertex> graph::get_vertices()
 {
 	return unordered_map<int, vertex>();
 }
