@@ -46,3 +46,8 @@ Unknown
 
 10:17pm
 		Justin - Andrew got us down to 1/4th the errors... progress!
+
+12/5/15
+
+3:20pm
+		Justin - Andrew submitted our code to Adam, Adam removed our bug! Overloaders were at the wrong place. Progress can now resume.
