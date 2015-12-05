@@ -28,4 +28,12 @@ Andrew - Made a mainline
 12/3/15
 
 1:29pm
-Justin - With Andrews help, the Git Repo is set up and we can both push and pull --- No code changes.
+		Justin - With Andrews help, the Git Repo is set up and we can both push and pull --- No code changes.
+
+Unknown
+		Andrew - Updated the includes file to use the namespace std
+
+12/4/15
+
+6:35pm
+		Justin - Introduction of the cfout function
