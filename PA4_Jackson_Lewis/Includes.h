@@ -11,6 +11,7 @@
 #include <fstream>
 #include <unordered_map>
 #include <stack>
+#include <cstdlib>
 
 // Using
 using namespace std; //Hope your ok with this shortcut // its fine
