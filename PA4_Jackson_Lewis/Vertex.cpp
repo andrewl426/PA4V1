@@ -20,17 +20,23 @@ vertex::vertex(int new_id, std::unordered_map<vertex*, int> new_edges, int new_l
 // Destructor
 
 // Getters
-const int vertex::get_id()
+int vertex::get_id() const 
 {
 	return 0;
 }
-const std::unordered_map<vertex*, int> vertex::get_edges()
+
+unordered_map<vertex*, int> vertex::get_edges()
 {
 	return std::unordered_map<vertex*, int>();
 }
-const int vertex::get_load_factor()
+int vertex::get_load_factor() const
 {
 	return 0;
+}
+
+int vertex::getPathWeight() const 
+{
+	return _path_weight;
 }
 
 // Setters
@@ -45,6 +51,11 @@ void vertex::set_edges(std::unordered_map<vertex*, int> new_edges)
 void vertex::set_load_factor(int new_load_factor)
 {
 
+}
+
+void vertex::setPathWeight(int weight)
+{
+	_path_weight = weight;
 }
 
 // Methods
