@@ -27,7 +27,8 @@ public:
 	const graph get_graph();
 	const int get_tick_count();
 	const message get_message();
-
+	void file_processor(string filename);
+	
 	// Setters
 	void set_graph(graph new_graph);
 	void set_tick_count(int new_tick_count);

@@ -33,6 +33,21 @@ const message network::get_message()
 	return message();
 }
 
+void network::file_processor(string filename)
+{
+	ifstream input_file{filename};
+
+
+	if (input_file.good() == true)
+	{
+
+
+
+
+	}
+
+}
+
 // Setters
 void network::set_graph(graph new_graph)
 {
@@ -46,7 +61,6 @@ void network::set_message(message new_message)
 {
 
 }
-
 
 
 // Methods
