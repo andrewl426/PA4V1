@@ -37,3 +37,9 @@ Unknown
 
 6:35pm
 		Justin - Introduction of the cfout function
+
+9:04pm
+		Andrew - Implemented Adams graph code. Currently having compiler issues. I believe its related to the operator overloading. Will revisit soon with fresh eyes
+
+9:43pm
+		Justin - Git code conflits occuring... troubleshooting...
