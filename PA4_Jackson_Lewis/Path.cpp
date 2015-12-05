@@ -18,23 +18,23 @@ path::path(stack<vertex*> new_vertices, int new_distance_traveled)
 // Destructor
 
 // Getters
-const stack<vertex*> path::get_vertices()
+stack<vertex*> path::get_vertices() const
 {
-	return stack<vertex*>();
+	return _vertices;
 }
-const int path::get_distance()
+int path::get_distance_traveled() const
 {
-	return 0;
+	return _distance_traveled;
 }
 
 // Setters
-void path::set_vertices(stack<vertex*> _vertices)
+void path::set_vertices(stack<vertex*> new_vertices)
 {
-
+	_vertices = new_vertices;
 }
 void path::set_distance_traveled(int new_distance_traveled)
 {
-
+	_distance_traveled = new_distance_traveled;
 }
 
 // Methods
