@@ -9,20 +9,24 @@ int main(int argc, char *argv[])
 {
 	string filename;
 	
+	/*
 	// BEGIN util_meths EXAMPLE
 	// ----	We should most likely place this function inside of the network driver 
 	// ----	function that actually runs the simulation, and just pass the filename in there
 	// ---- I can template this later if we want
 
 	// declare var
-	//util_meths cfout;
+	util_meths printer;
+	int test_int = 100101;
 
 	// set filename
-	//cfout.setFilename("FILE_NAME_HERE.txt");
+	printer.setFilename("FILE_NAME_HERE.txt");
 	
 	// prints usage
-//	cfout.cfout("You put a string here;\nUsing 'backslash n' allows you to do new lines.\n");
+	printer.cfout("You put a string here;\nUsing 'backslash n' allows you to do new lines.\nThe next line is templated...\n");
+	printer.cfout(test_int);
 	// END  util_meths EXAMPLE
+	*/
 
 	for (int i = 1; i < argc; i++) //argv is much easier to deal with as a string
 	{
