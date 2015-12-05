@@ -9,8 +9,6 @@
 // Class definition
 class graph
 {
-
-
 public:
 	// Public vars
 	unordered_map<int, vertex> _vertices;
@@ -31,12 +29,9 @@ public:
 
 	// Methods
 	unordered_map<vertex, int> computeShortestPath(vertex* start);
-
-
-
+	
 private:
 };
-
 
 class PathWeightComparer
 {
@@ -45,12 +40,11 @@ public:
 	{
 		return (lhs.getPathWeight() > rhs.getPathWeight());
 	}
-
 };
 
 //hashing algorithm must exist in STD namespace
-namespace std {
-
+namespace std 
+{
 	template <>
 	struct hash<vertex>
 	{
@@ -71,6 +65,4 @@ namespace std {
 	};
 }
 
-
 #endif
-
