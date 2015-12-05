@@ -43,3 +43,6 @@ Unknown
 
 9:43pm
 		Justin - Git Conflicts... Troubleshooting.
+
+10:17pm
+		Justin - Andrew got us down to 1/4th the errors... progress!

@@ -22,3 +22,9 @@ void util_meths::cfout(string str)
 
 	cout << str;
 }
+
+template<typename T>
+void util_meths::cfout(T temp)
+{
+	cout << temp;
+}
