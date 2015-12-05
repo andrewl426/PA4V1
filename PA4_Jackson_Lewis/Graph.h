@@ -39,8 +39,6 @@ private:
 
 
 
-
-
 int operator==(const vertex &lhs, const vertex &rhs)
 {
 	return lhs.get_id() == rhs.get_id();
@@ -63,6 +61,7 @@ public:
 	{
 		return (lhs.getPathWeight() > rhs.getPathWeight());
 	}
+
 };
 
 //hashing algorithm must exist in STD namespace
@@ -75,7 +74,7 @@ namespace std {
 		size_t operator()(const vertex& item) const
 		{
 			size_t hash_val = 0;
-			S
+			
 			//to hash INTs using the STL
 			hash<int> int_hash{};
 
