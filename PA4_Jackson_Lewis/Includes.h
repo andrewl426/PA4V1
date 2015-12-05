@@ -38,4 +38,5 @@ public:
 	//void cfout(T temp);
 };
 
+
 #endif

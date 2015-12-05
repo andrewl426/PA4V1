@@ -9,10 +9,10 @@ class vertex
 {
 public:
 	// Public vars
-	int _id = 0;
+	int _id;
 	unordered_map<vertex*, int> _edges;
-	int _load_factor = 0;
-	int _path_weight = 0;
+	int _load_factor;
+	int _path_weight;
 	static int _id_counter;
 	// Constructors
 	vertex();
@@ -38,5 +38,8 @@ public:
 private:
 	
 };
+
+
+
 
 #endif
