@@ -75,7 +75,7 @@ namespace std {
 		size_t operator()(const vertex& item) const
 		{
 			size_t hash_val = 0;
-
+			S
 			//to hash INTs using the STL
 			hash<int> int_hash{};
 

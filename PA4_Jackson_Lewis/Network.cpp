@@ -40,7 +40,7 @@ void network::set_graph(graph new_graph)
 }
 void network::set_tick_count(int new_tick_count)
 {
-
+	_tick_count = new_tick_count;
 }
 void network::set_message(message new_message)
 {

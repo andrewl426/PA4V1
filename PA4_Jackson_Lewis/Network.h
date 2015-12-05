@@ -12,7 +12,7 @@ class network
 public:
 	// Public vars
 	graph _graph;
-	int _tick_count = 0;
+	int _tick_count;
 	message _message;
 
 	// Constructors
@@ -38,5 +38,8 @@ public:
 
 private:
 };
+
+
+
 
 #endif
