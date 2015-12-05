@@ -7,7 +7,7 @@ path::path()
 	//_vertices = empty!
 	_distance_traveled = 0;
 }
-path::path(std::stack<vertex*> new_vertices, int new_distance_traveled)
+path::path(stack<vertex*> new_vertices, int new_distance_traveled)
 {
 	_vertices = new_vertices;
 	_distance_traveled = new_distance_traveled;
@@ -28,7 +28,7 @@ const int path::get_distance()
 }
 
 // Setters
-void path::set_vertices(std::stack<vertex*> _vertices)
+void path::set_vertices(stack<vertex*> _vertices)
 {
 
 }
