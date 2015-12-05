@@ -24,7 +24,7 @@ public:
 
 	// Getters
 	int vertex::get_id() const;
-	unordered_map<vertex*, int> vertex::get_edges();
+	unordered_map<vertex*, int> get_edges();
 	int vertex::get_load_factor() const;
 	int getPathWeight() const;
 

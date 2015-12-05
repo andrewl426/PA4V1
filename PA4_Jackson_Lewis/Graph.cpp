@@ -1,6 +1,23 @@
 // Includes
 #include "Graph.h"
 
+
+int operator==(const vertex &lhs, const vertex &rhs)
+{
+	return lhs.get_id() == rhs.get_id();
+}
+
+bool operator<(const vertex &lhs, const vertex &rhs)
+{
+	return lhs.get_id() < rhs.get_id();
+}
+
+bool operator>(const vertex &lhs, const vertex &rhs)
+{
+	return lhs.get_id() > rhs.get_id();
+}
+
+
 // Constructors
 graph::graph()
 {
