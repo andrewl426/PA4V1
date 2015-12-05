@@ -34,8 +34,8 @@ public:
 	// Methods
 	void cfout(string str);
 
-	template<typename T>
-	void cfout(T temp);
+	//template<typename T>
+	//void cfout(T temp);
 };
 
 #endif
