@@ -22,20 +22,40 @@ network::network(graph new_graph, int new_tick_count, message new_message)
 // Getters
 const graph network::get_graph()
 {
-	return graph();
+	return _graph;
 }
 const int network::get_tick_count()
 {
-	return 0;
+	return _tick_count;
 }
 const message network::get_message()
 {
-	return message();
+	return _message;
+}
+
+// Setters
+void network::set_graph(graph new_graph)
+{
+	_graph = new_graph;
+}
+void network::set_tick_count(int new_tick_count)
+{
+	_tick_count = new_tick_count;
+}
+void network::set_message(message new_message)
+{
+	_message = new_message;
+}
+
+// Methods
+void network::tick()
+{
+
 }
 
 void network::file_processor(string filename)
 {
-	ifstream input_file{filename};
+	ifstream input_file{ filename };
 	int node_check = 0;
 
 
@@ -58,27 +78,6 @@ void network::file_processor(string filename)
 
 
 	}
-
-}
-
-// Setters
-void network::set_graph(graph new_graph)
-{
-
-}
-void network::set_tick_count(int new_tick_count)
-{
-	_tick_count = new_tick_count;
-}
-void network::set_message(message new_message)
-{
-
-}
-
-
-// Methods
-void network::tick()
-{
 
 }
 

@@ -51,3 +51,6 @@ Unknown
 
 3:20pm
 		Justin - Andrew submitted our code to Adam, Adam removed our bug! Overloaders were at the wrong place. Progress can now resume.
+
+3:41pm
+		Justin - All setters and getters function.
