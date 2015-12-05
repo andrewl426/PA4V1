@@ -47,5 +47,10 @@ void network::set_message(message new_message)
 
 }
 
+
+
 // Methods
-void tick();
+void network::tick()
+{
+
+}
