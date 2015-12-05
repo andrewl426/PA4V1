@@ -36,6 +36,8 @@ public:
 
 	// Methods
 	void tick();
+	vector<string> string_parser(string tobeparsed);
+
 
 private:
 };
