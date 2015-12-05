@@ -22,7 +22,7 @@ vertex::vertex(int new_id, unordered_map<vertex*, int> new_edges, int new_load_f
 // Getters
 int vertex::get_id() const 
 {
-	return 0;
+	return _id;
 }
 
 unordered_map<vertex*, int> vertex::get_edges()

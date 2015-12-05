@@ -1,6 +1,5 @@
 // Includes
 #include "Graph.h"
-#include "Vertex.h"
 
 // Constructors
 graph::graph()
