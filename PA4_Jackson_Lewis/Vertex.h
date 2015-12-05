@@ -12,10 +12,11 @@ public:
 	int _id = 0;
 	unordered_map<vertex*, int> _edges;
 	int _load_factor = 0;
-
+	int _path_weight = 0;
+	static int _id_counter;
 	// Constructors
 	vertex();
-	vertex(int new_id, std::unordered_map<vertex*, int> new_edges, int new_load_factor);
+	vertex(int new_id, unordered_map<vertex*, int> new_edges, int new_load_factor);
 
 	// Copy Constructor
 
@@ -29,14 +30,13 @@ public:
 
 	// Setters
 	void set_id(int new_id);
-	void set_edges(std::unordered_map<vertex*, int> new_edges);
+	void set_edges(unordered_map<vertex*, int> new_edges);
 	void set_load_factor(int new_load_factor);
 	void setPathWeight(int weight);
 
 	// Methods
 private:
-	int _path_weight = 0;
-	static int _id_counter;
+	
 };
 
 int operator==(const vertex &lhs, const vertex &rhs)

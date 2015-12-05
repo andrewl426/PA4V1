@@ -15,13 +15,13 @@ int main(int argc, char *argv[])
 	// ---- I can template this later if we want
 
 	// declare var
-	util_meths cfout;
+	//util_meths cfout;
 
 	// set filename
-	cfout.setFilename("FILE_NAME_HERE.txt");
+	//cfout.setFilename("FILE_NAME_HERE.txt");
 	
 	// prints usage
-	cfout.cfout("You put a string here;\nUsing 'backslash n' allows you to do new lines.\n");
+	//cfout.cfout("You put a string here;\nUsing 'backslash n' allows you to do new lines.\n");
 	// END  util_meths EXAMPLE
 
 	for (int i = 1; i < argc; i++) //argv is much easier to deal with as a string

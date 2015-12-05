@@ -10,6 +10,7 @@
 #include <fstream>
 #include <unordered_map>
 #include <stack>
+#include <cstdlib>
 
 using namespace std; //Hope your ok with this shortcut
 using std::cout;
