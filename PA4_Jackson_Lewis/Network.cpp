@@ -100,7 +100,8 @@ void network::driver(string filename)
 		// Add new packet to the message's packet queue, _packets
 		message_item.add_packet(temp_packet);
 
-		cout << "___PACKET___" << endl << "Val: " << temp_packet.get_value() << endl << "Ord: " << temp_packet.get_order() << endl << "Wai: " << temp_packet.get_current_wait() << endl << "Pre: " << temp_packet.get_previous_location()->get_id() << endl << "Nex: " << temp_packet.get_next_hop()->get_id() << endl << "Des: " << temp_packet.get_destination()->get_id() << endl;
+		// Print init packet info
+//		cout << "___PACKET INIT___" << endl << "Val: " << temp_packet.get_value() << endl << "Ord: " << temp_packet.get_order() << endl << "Wai: " << temp_packet.get_current_wait() << endl << "Pre: " << temp_packet.get_previous_location()->get_id() << endl << "Nex: " << temp_packet.get_next_hop()->get_id() << endl << "Des: " << temp_packet.get_destination()->get_id() << endl;
 
 		// Increment order counter
 		j++;
@@ -141,7 +142,7 @@ void network::driver(string filename)
 				in_the_network.push_back(temp_packet);
 			}
 
-			cout << in_the_network.size() << endl;
+//			cout << in_the_network.size() << endl;
 			//system("PAUSE");
 
 			// For each packet in the network...
@@ -184,11 +185,24 @@ void network::driver(string filename)
 						in_the_network[i].set_current_wait(1); // TEMPORARY INCORRECT HARDCODE
 					}
 
-					cout << in_the_network[i].get_destination()->get_id() << " " << ending_vertex << endl;
-					system("PAUSE");
+//					cout << in_the_network[i].get_destination()->get_id() << " " << ending_vertex << endl;
+//					system("PAUSE");
+
+					cout << "___PACKET TO COMPARE___" << endl << "Val: " << temp_packet.get_value() << endl << "Ord: " << temp_packet.get_order() << endl << "Wai: " << temp_packet.get_current_wait() << endl << "Pre: " << temp_packet.get_previous_location()->get_id() << endl << "Nex: " << temp_packet.get_next_hop()->get_id() << endl << "Des: " << temp_packet.get_destination()->get_id() << endl;
 					// If packet has reached destination, add to list of completed packets
+
+					cout << "IF: " << in_the_network[i].get_destination()->get_id() << " == " << ending_vertex;
 					if (in_the_network[i].get_destination()->get_id() == ending_vertex)
 					{
+						cout << " TRUE" << endl;
+
+						for (auto i : in_the_network)
+						{
+							// THIS CURRENTLY ONLY EVER PRINTS ONE ITEM, AS THE SIZE ONLY EVER GETS TO ONE BECAUSE AN ITEM CURRENTLY ENTERS AND LEAVES ONE TICK LATER, IE. NO BUILDUP OF NODES.
+							cout<< i.get_value() << " ";
+						}
+						cout << endl;
+
 						// push this packet to completed packets
 						completed_packets.push_back(in_the_network[i]);
 						//in_the_network.pop_back(); // I'm not sure, but i believe that what is popped and what is pushed should be the same. The idea is to push the completed node onto completed, and pop it from in the network...
