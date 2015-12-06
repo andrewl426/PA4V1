@@ -89,9 +89,11 @@ void network::driver(string filename)
 		if (_graph.get_vertices().count(starting_vertex) && _graph.get_vertices().count(ending_vertex))
 		{
 			// Init prev location to source...
-			temp_packet.set_previous_location(_graph.get_vertices().at(starting_vertex)); //traced crash with space to here
+			temp_packet.set_previous_location(_graph.get_vertices().at(starting_vertex));
+			// Init next location to source... (makes sure its initialized...)
+			temp_packet.set_next_hop(_graph.get_vertices().at(starting_vertex));
 			// Init dest to ending vertex...
-			temp_packet.set_destination(_graph.get_vertices().at(ending_vertex));
+			temp_packet.set_destination(&_graph.get_vertices().at(ending_vertex));
 			temp_packet.get_destination()->set_id(ending_vertex);				
 		}
 
@@ -127,7 +129,7 @@ void network::driver(string filename)
 				temp_packet = message_item.pop_packet();
 
 				//TEMPORARILY SETTING NEXT HOP TO DESTINATION!
-				temp_packet.set_next_hop(_graph.get_vertices().at(ending_vertex));
+				temp_packet.set_next_hop(&_graph.get_vertices().at(ending_vertex));
 
 				// Queue the packets arrival at the proper time
 				  // push onto queue?
@@ -175,7 +177,7 @@ void network::driver(string filename)
 						// Check path?
 
 						//TEMPORARILY SETTING NEXT HOP TO DESTINATION!
-						in_the_network[i].set_next_hop(_graph.get_vertices().at(ending_vertex));
+						in_the_network[i].set_next_hop(&_graph.get_vertices().at(ending_vertex));
 
 						// Queue the packets arrival at the proper time
 						// push onto queue?
