@@ -57,7 +57,6 @@ unordered_map<vertex, int> graph::computeShortestPath(vertex* start)
 
 	//holds known distances
 	unordered_map<vertex, int> distances;
-
 	//underlying heap
 	priority_queue<vertex, vector<vertex>, PathWeightComparer> dijkstra_queue{};
 
@@ -81,14 +80,14 @@ unordered_map<vertex, int> graph::computeShortestPath(vertex* start)
 			if (distances.find(top) == distances.end())
 			{
 				//make known
-				int current_path_weight = top.getPathWeight();
+				int current_path_weight = top.getPathWeight() * top.get_load_factor();
 				distances[top] = current_path_weight;
 
 				//push on outgoing edges
 				for (auto item : top.get_edges())
 				{
 					vertex *next = item.first;
-					int weight = item.second;
+					int weight = item.second * top.get_load_factor();
 
 					next->setPathWeight(weight + current_path_weight);
 
