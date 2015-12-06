@@ -81,7 +81,7 @@ void network::driver(string filename)
 		// Set packets order
 		temp_packet.set_order(j);
 		// Init prev location to source...
-		temp_packet.set_previous_location(&_graph.get_vertices().at(starting_vertex));
+		temp_packet.set_previous_location(&_graph.get_vertices().at(starting_vertex)); //traced crash with space to here
 		// Init dest to ending vertex...
 		temp_packet.set_destination(&_graph.get_vertices().at(ending_vertex));
 
@@ -126,6 +126,9 @@ void network::driver(string filename)
 
 				in_the_network.push_back(temp_packet);
 			}
+
+			cout << in_the_network.size() << endl;
+			system("PAUSE");
 
 			// For each packet in the network...
 			for (auto i : in_the_network)
