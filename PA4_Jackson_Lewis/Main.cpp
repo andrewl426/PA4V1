@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 
 	network dothething;
 
-	dothething.file_processor(filename);
+	dothething.driver(filename);
 	
 	// End of program pause
 	cout << endl << endl;

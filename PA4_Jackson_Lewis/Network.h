@@ -35,6 +35,7 @@ public:
 
 	// Methods
 	void tick();
+	void driver(string filename);
 	void file_processor(string filename);
 	vector<string> string_parser(string tobeparsed);
 

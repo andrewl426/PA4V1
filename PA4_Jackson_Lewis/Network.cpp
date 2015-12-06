@@ -53,6 +53,25 @@ void network::tick()
 
 }
 
+void network::driver(string filename)
+{
+	string message;
+	int starting_vertex;
+	int ending_vertex;
+	file_processor(filename);
+
+	cout << "Enter a message to send: ";
+	cin >> message;
+	cout << endl;
+	cout << "Enter a starting vertex: ";
+	cin >> starting_vertex;
+	cout << endl;
+	cout << "Enter a destination vertex: ";
+	cin >> ending_vertex;
+
+
+}
+
 void network::file_processor(string filename)
 {
 	ifstream input_file{ filename };
@@ -80,6 +99,8 @@ void network::file_processor(string filename)
 
 	}
 
+	cout << "Graph Created." << endl;
+
 	for (auto i : _graph.get_vertices())
 	{
 		cout << i.first << " ";
@@ -88,7 +109,7 @@ void network::file_processor(string filename)
 			cout << j.second << endl;
 		}
 	}
-
+	cout << endl;
 
 }
 
