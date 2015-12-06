@@ -89,9 +89,7 @@ void network::driver(string filename)
 		if (_graph.get_vertices().count(starting_vertex) && _graph.get_vertices().count(ending_vertex))
 		{
 			// Init prev location to source...
-			temp_packet.set_previous_location(_graph.get_vertices().at(starting_vertex));
-			// Init next location to source... (makes sure its initialized...)
-			temp_packet.set_next_hop(_graph.get_vertices().at(starting_vertex));
+			temp_packet.set_previous_location(_graph.get_vertices().at(starting_vertex)); //traced crash with space to here
 			// Init dest to ending vertex...
 			temp_packet.set_destination(_graph.get_vertices().at(ending_vertex));
 			temp_packet.get_destination()->set_id(ending_vertex);				
@@ -100,7 +98,7 @@ void network::driver(string filename)
 		// Add new packet to the message's packet queue, _packets
 		message_item.add_packet(temp_packet);
 
-		cout << "___PACKET___" << endl << "Val: " << temp_packet.get_value() << endl << "Ord: " << temp_packet.get_order() << endl << "Wai: " << temp_packet.get_current_wait() << endl << "Pre: " << temp_packet.get_previous_location()->get_id() << endl << "Nex: " << temp_packet.get_next_hop()->get_id() << endl << "Des: " << temp_packet.get_destination()->get_id() << endl;
+		cout << "___PACKET___" << endl << "Val: " << temp_packet.get_value() << endl << "Ord: " << temp_packet.get_order() << endl << "Wai: " << temp_packet.get_current_wait() << endl << "Pre: " << temp_packet.get_previous_location() << endl << "Nex: " << temp_packet.get_next_hop() << endl << "Des: " << temp_packet.get_destination() << endl;
 
 		// Increment order counter
 		j++;
@@ -166,7 +164,7 @@ void network::driver(string filename)
 					{
 						// Schedule another transmission
 						// Compute the shortest route
-// CRASH				distances = _graph.computeShortestPath(in_the_network[i].get_previous_location());
+						distances = _graph.computeShortestPath(in_the_network[i].get_previous_location());
 
 						for (auto j : distances) // changed to j in case the i loop within an i loop was casuing issues.
 						{
