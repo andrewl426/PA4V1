@@ -4,6 +4,7 @@
 //Justin: Im gonna make a cout/fout function that has a filename var built in.
 
 #include "Includes.h"
+#include "Network.h"
 
 int main(int argc, char *argv[])
 {
@@ -39,6 +40,10 @@ int main(int argc, char *argv[])
 		cout << endl;
 	}
 
+
+	network dothething;
+
+	dothething.file_processor(filename);
 	
 	// End of program pause
 	cout << endl << endl;
