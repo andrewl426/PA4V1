@@ -92,6 +92,8 @@ void network::driver(string filename)
 			temp_packet.set_previous_location(&_graph.get_vertices().at(starting_vertex)); //traced crash with space to here
 			// Init dest to ending vertex...
 			temp_packet.set_destination(&_graph.get_vertices().at(ending_vertex));
+			temp_packet.get_destination()->set_id(ending_vertex);
+				
 		}
 
 		// Add new packet to the message's packet queue, _packets
