@@ -47,19 +47,19 @@ const int packet::get_current_wait()
 {
 	return _current_wait;
 }
-const vertex* packet::get_destination()
+vertex* packet::get_destination()
 {
 	return _destination;
 }
-vertex* packet::get_previous_location() const
+vertex* packet::get_previous_location()
 {
 	return _previous_location;
 }
-vertex* packet::get_next_hop() const
+vertex* packet::get_next_hop()
 {
 	return _next_hop;
 }
-path packet::get_packets_path() const
+path packet::get_packets_path()
 {
 	return _packets_path;
 }

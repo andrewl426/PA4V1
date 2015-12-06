@@ -32,10 +32,10 @@ public:
 	const char get_value();
 	const int get_order();
 	const int get_current_wait();
-	const vertex* get_destination();
-	vertex* get_previous_location() const;
-	vertex* get_next_hop() const; 
-	path packet::get_packets_path() const;
+	vertex* get_destination();
+	vertex* get_previous_location();
+	vertex* get_next_hop(); 
+	path packet::get_packets_path();
 
 	// Setters
 	void set_value(int new_value);
