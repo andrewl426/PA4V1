@@ -54,3 +54,5 @@ Unknown
 
 3:41pm
 		Justin - All setters and getters function.
+9:28pm
+		Andrew - File processing now works! Also Djikstras is implemented. Graph is created. Justin pseudocoded out the algorithm from Adam. Justin created a print of our graph.
