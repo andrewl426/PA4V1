@@ -131,12 +131,21 @@ void network::file_processor(string filename)
 	vector<string> parsed;
 	unordered_map<vertex*, int> temp_paths;
 	int i = 0;
+	int last_key = 0;
+	int current_key = 0;
 
 	while (input_file.good() == true)
 	{
 		getline(input_file, line);
 		parsed = string_parser(line);
 		parsed.shrink_to_fit();
+
+		current_key = stoi(parsed[0]);
+		if (last_key != current_key)
+		{
+			last_key = stoi(parsed[0]);
+			temp_paths.clear();
+		}
 
 		if (parsed.size() == 1) //This should be a new node then. 
 		{			
@@ -153,14 +162,35 @@ void network::file_processor(string filename)
 
 	cout << "Graph Created." << endl;
 
+	// Prints Vertex:Id:EdgeWeight
 	for (auto i : _graph.get_vertices())
 	{
-		cout << i.first << " ";
+		// Vertex (Header)
+		cout << endl << i.first << endl << "____________" << endl;
 		for (auto j : i.second.get_edges())
 		{
-			cout << j.second << endl;
+			// Source
+			cout << i.first << " ";
+			// Dest ID
+			cout << j.first->get_id() << " ";
+			// Edge Weight
+			cout << j.second << " ";
+			cout << endl;
 		}
 	}
+
+	/*
+	for (auto i : _graph.get_vertices())
+	{
+		cout << "Vertex: " << i.first << endl;
+		for (auto j : i.second.get_edges())
+		{
+			cout << "Edge: " << j.first->get_id() << endl;
+			cout << "Weig: " << j.second << endl;
+		}
+	}	
+	*/
+
 	cout << endl;
 
 }
