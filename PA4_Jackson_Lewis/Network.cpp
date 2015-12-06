@@ -93,14 +93,14 @@ void network::driver(string filename)
 			// Init next location to source... (makes sure its initialized...)
 			temp_packet.set_next_hop(_graph.get_vertices().at(starting_vertex));
 			// Init dest to ending vertex...
-			temp_packet.set_destination(&_graph.get_vertices().at(ending_vertex));
+			temp_packet.set_destination(_graph.get_vertices().at(ending_vertex));
 			temp_packet.get_destination()->set_id(ending_vertex);				
 		}
 
 		// Add new packet to the message's packet queue, _packets
 		message_item.add_packet(temp_packet);
 
-		cout << "___PACKET___" << endl << "Val: " << temp_packet.get_value() << endl << "Ord: " << temp_packet.get_order() << endl << "Wai: " << temp_packet.get_current_wait() << endl << "Pre: " << temp_packet.get_previous_location() << endl << "Nex: " << temp_packet.get_next_hop() << endl << "Des: " << temp_packet.get_destination() << endl;
+		cout << "___PACKET___" << endl << "Val: " << temp_packet.get_value() << endl << "Ord: " << temp_packet.get_order() << endl << "Wai: " << temp_packet.get_current_wait() << endl << "Pre: " << temp_packet.get_previous_location()->get_id() << endl << "Nex: " << temp_packet.get_next_hop()->get_id() << endl << "Des: " << temp_packet.get_destination()->get_id() << endl;
 
 		// Increment order counter
 		j++;
@@ -117,7 +117,7 @@ void network::driver(string filename)
 			{
 
 				// Compute the shortest route
-				distances =_graph.computeShortestPath(&_graph.get_vertices().at(starting_vertex));
+// CRASHES		distances =_graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
 
 				for (auto i : distances)
 				{
@@ -129,7 +129,7 @@ void network::driver(string filename)
 				temp_packet = message_item.pop_packet();
 
 				//TEMPORARILY SETTING NEXT HOP TO DESTINATION!
-				temp_packet.set_next_hop(&_graph.get_vertices().at(ending_vertex));
+				temp_packet.set_next_hop(_graph.get_vertices().at(ending_vertex));
 
 				// Queue the packets arrival at the proper time
 				  // push onto queue?
@@ -166,7 +166,7 @@ void network::driver(string filename)
 					{
 						// Schedule another transmission
 						// Compute the shortest route
-						distances = _graph.computeShortestPath(in_the_network[i].get_previous_location());
+// CRASHES				distances = _graph.computeShortestPath(in_the_network[i].get_previous_location());
 
 						for (auto j : distances) // changed to j in case the i loop within an i loop was casuing issues.
 						{
@@ -177,7 +177,7 @@ void network::driver(string filename)
 						// Check path?
 
 						//TEMPORARILY SETTING NEXT HOP TO DESTINATION!
-						in_the_network[i].set_next_hop(&_graph.get_vertices().at(ending_vertex));
+						in_the_network[i].set_next_hop(_graph.get_vertices().at(ending_vertex));
 
 						// Queue the packets arrival at the proper time
 						// push onto queue?
