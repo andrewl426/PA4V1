@@ -52,3 +52,11 @@ void message::add_packet(packet new_packet)
 {
 	_packets.push(new_packet);
 }
+
+packet message::pop_packet()
+{
+	packet temp_packet = _packets.front();
+	_packets.pop();
+
+	return temp_packet;
+}

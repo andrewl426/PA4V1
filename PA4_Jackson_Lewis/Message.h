@@ -35,6 +35,7 @@ public:
 
 	// Methods
 	void add_packet(packet new_packet);
+	packet pop_packet();
 
 private:
 };
