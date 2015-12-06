@@ -62,6 +62,7 @@ void network::driver(string filename)
 	int starting_vertex;
 	int ending_vertex;
 	file_processor(filename);
+	unordered_map<vertex, int> distances;
 
 	cout << "Enter a message to send: ";
 	cin >> message_text;
@@ -98,7 +99,7 @@ void network::driver(string filename)
 			{
 
 				// Compute the shortest route
-				  // Dijkstras(start,end)
+				distances =_graph.computeShortestPath(temp_packet.get_previous_location());
 
 				// Determine next intermediary node
 				  // Check path?

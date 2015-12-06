@@ -31,7 +31,7 @@ public:
 	const int get_order();
 	const int get_current_wait();
 	const vertex* get_destination();
-	const vertex* get_previous_location();
+	vertex* get_previous_location() const;
 	const vertex* get_next_hop();
 
 	// Setters

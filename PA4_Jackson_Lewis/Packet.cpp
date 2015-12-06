@@ -51,7 +51,7 @@ const vertex* packet::get_destination()
 {
 	return _destination;
 }
-const vertex* packet::get_previous_location()
+ vertex* packet::get_previous_location() const
 {
 	return _previous_location;
 }
