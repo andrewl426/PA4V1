@@ -58,7 +58,7 @@ void network::file_processor(string filename)
 	ifstream input_file{ filename };
 	string line = "";
 	vector<string> parsed;
-	unordered_map<int, int> temp_paths;
+	unordered_map<vertex*, int> temp_paths;
 	int i = 0;
 
 	while (input_file.good() == true)

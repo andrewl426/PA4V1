@@ -89,6 +89,7 @@ unordered_map<vertex, int> graph::computeShortestPath(vertex* start)
 				{
 					vertex *next = item.first;
 					int weight = item.second;
+
 					next->setPathWeight(weight + current_path_weight);
 
 					//not known?  add to heap
