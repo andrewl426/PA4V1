@@ -92,7 +92,7 @@ void network::driver(string filename)
 	if (_graph.get_vertices().count(starting_vertex) && _graph.get_vertices().count(ending_vertex))
 	{
 		// While not done...
-		while (false) // Set to false to allow debug in current state, should be a while true loop -- while true that we are not finished (More packets to be sent, or more packets are in transmission...)
+		while (!message_item.get_packets().empty() && !in_the_network.empty()) // Set to false to allow debug in current state, should be a while true loop -- while true that we are not finished (More packets to be sent, or more packets are in transmission...)
 		{
 			// If msg has more packets to send, queue the next packet for transmission at the starting location
 			if (true)
