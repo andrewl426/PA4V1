@@ -78,7 +78,6 @@ void network::driver(string filename)
 	cout << "Enter a destination vertex: ";
 	cin >> ending_vertex;
 
-
 	// Turn message into message item
 	for (auto i : message_text)
 	{
