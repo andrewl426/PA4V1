@@ -16,7 +16,7 @@ public:
 	static int _id_counter;
 	// Constructors
 	vertex();
-	vertex(int new_id, unordered_map<vertex*, int> new_edges, int new_load_factor);
+	vertex(int new_id, unordered_map<int, int> new_edges, int new_load_factor);
 
 	// Copy Constructor
 
