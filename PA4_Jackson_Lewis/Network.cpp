@@ -58,7 +58,7 @@ void network::file_processor(string filename)
 	ifstream input_file{ filename };
 	string line = "";
 	vector<string> parsed;
-	unordered_map<vertex*, int> temp_paths;
+	unordered_map<int, int> temp_paths;
 	int i = 0;
 
 	while (input_file.good() == true)
@@ -75,8 +75,7 @@ void network::file_processor(string filename)
 		}
 		else // this is a path
 		{
-			
-			temp_paths[stoi(parsed[1])].setPathWeight(stoi(parsed[2]));
+			temp_paths[stoi(parsed[1])] = stoi(parsed[2]);
 			_graph._vertices[stoi(parsed[0])].set_edges(temp_paths);
 
 		}

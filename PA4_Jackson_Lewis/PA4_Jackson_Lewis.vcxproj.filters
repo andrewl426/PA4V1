@@ -67,5 +67,17 @@
     <Text Include="ChangeLog.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="graph2.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="graph3.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="graph4.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="test5.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
