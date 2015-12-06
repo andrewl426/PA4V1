@@ -86,10 +86,14 @@ void network::driver(string filename)
 		temp_packet.set_value(i);
 		// Set packets order
 		temp_packet.set_order(j);
-		// Init prev location to source...
-		temp_packet.set_previous_location(&_graph.get_vertices().at(starting_vertex)); //traced crash with space to here
-		// Init dest to ending vertex...
-		temp_packet.set_destination(&_graph.get_vertices().at(ending_vertex));
+		// Check to verify validity of vertex
+		if (_graph.get_vertices().count(starting_vertex) && _graph.get_vertices().count(ending_vertex))
+		{
+			// Init prev location to source...
+			temp_packet.set_previous_location(&_graph.get_vertices().at(starting_vertex)); //traced crash with space to here
+			// Init dest to ending vertex...
+			temp_packet.set_destination(&_graph.get_vertices().at(ending_vertex));
+		}
 
 		// Add new packet to the message's packet queue, _packets
 		message_item.add_packet(temp_packet);
