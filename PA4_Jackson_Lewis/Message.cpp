@@ -48,3 +48,7 @@ void message::set_ending_vertex(vertex * new_ending_vertex)
 }
 
 // Methods
+void message::add_packet(packet new_packet)
+{
+	_packets.push(new_packet);
+}

@@ -55,13 +55,16 @@ void network::tick()
 
 void network::driver(string filename)
 {
-	string message;
+	string message_text;
+	message message_item;
+	packet temp_packet;
+	int j = 0; // used to keep track of message order
 	int starting_vertex;
 	int ending_vertex;
 	file_processor(filename);
 
 	cout << "Enter a message to send: ";
-	cin >> message;
+	cin >> message_text;
 	cout << endl;
 	cout << "Enter a starting vertex: ";
 	cin >> starting_vertex;
@@ -69,6 +72,20 @@ void network::driver(string filename)
 	cout << "Enter a destination vertex: ";
 	cin >> ending_vertex;
 
+	// Turn message into message item
+	for (auto i : message_text)
+	{
+		// Set packets char
+		temp_packet.set_value(i);
+		// Set packets order
+		temp_packet.set_order(j);
+		
+		// Add new packet to the message's packet queue, _packets
+		message_item.add_packet(temp_packet);
+
+		// Increment order counter
+		j++;
+	}
 
 	// Check validity of source and dest nodes and message.
 	if (true)
@@ -156,8 +173,6 @@ void network::file_processor(string filename)
 			temp_paths[&_graph._vertices[stoi(parsed[1])]] = stoi(parsed[2]);
 			_graph._vertices[stoi(parsed[0])].set_edges(temp_paths);
 		}
-
-
 	}
 
 	cout << "Graph Created." << endl;

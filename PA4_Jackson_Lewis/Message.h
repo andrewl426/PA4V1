@@ -34,6 +34,7 @@ public:
 	void set_ending_vertex(vertex* new_ending_vertex);
 
 	// Methods
+	void add_packet(packet new_packet);
 
 private:
 };
