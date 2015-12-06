@@ -24,7 +24,7 @@ int vertex::get_id() const
 {
 	return _id;
 }
-unordered_map<vertex*, int> vertex::get_edges()
+unordered_map<int, int> vertex::get_edges()
 {
 	return _edges;
 }
@@ -42,7 +42,7 @@ void vertex::set_id(int new_id)
 {
 	_id = new_id;
 }
-void vertex::set_edges(unordered_map<vertex*, int> new_edges)
+void vertex::set_edges(unordered_map<int, int> new_edges)
 {
 	_edges = new_edges;
 }

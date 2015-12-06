@@ -10,7 +10,7 @@ class vertex
 public:
 	// Public vars
 	int _id;
-	unordered_map<vertex*, int> _edges;
+	unordered_map<int, int> _edges;
 	int _load_factor;
 	int _path_weight;
 	static int _id_counter;
@@ -24,13 +24,13 @@ public:
 
 	// Getters
 	int vertex::get_id() const;
-	unordered_map<vertex*, int> get_edges();
+	unordered_map<int, int> get_edges();
 	int vertex::get_load_factor() const;
 	int getPathWeight() const;
 
 	// Setters
 	void set_id(int new_id);
-	void set_edges(unordered_map<vertex*, int> new_edges);
+	void set_edges(unordered_map<int, int> new_edges);
 	void set_load_factor(int new_load_factor);
 	void setPathWeight(int weight);
 
