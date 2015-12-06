@@ -92,12 +92,13 @@ void network::driver(string filename)
 			temp_packet.set_previous_location(&_graph.get_vertices().at(starting_vertex)); //traced crash with space to here
 			// Init dest to ending vertex...
 			temp_packet.set_destination(&_graph.get_vertices().at(ending_vertex));
-			temp_packet.get_destination()->set_id(ending_vertex);
-				
+			temp_packet.get_destination()->set_id(ending_vertex);				
 		}
 
 		// Add new packet to the message's packet queue, _packets
 		message_item.add_packet(temp_packet);
+
+		cout << "___PACKET___" << endl << "Val: " << temp_packet.get_value() << endl << "Ord: " << temp_packet.get_order() << endl << "Wai: " << temp_packet.get_current_wait() << endl << "Pre: " << temp_packet.get_previous_location() << endl << "Nex: " << temp_packet.get_next_hop() << endl << "Des: " << temp_packet.get_destination() << endl;
 
 		// Increment order counter
 		j++;
