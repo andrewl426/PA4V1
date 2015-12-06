@@ -82,7 +82,9 @@ void network::driver(string filename)
 		temp_packet.set_order(j);
 		// Init prev location to source...
 		temp_packet.set_previous_location(&_graph.get_vertices().at(starting_vertex));
-		
+		// Init dest to ending vertex...
+		temp_packet.set_destination(&_graph.get_vertices().at(ending_vertex));
+
 		// Add new packet to the message's packet queue, _packets
 		message_item.add_packet(temp_packet);
 
@@ -111,9 +113,6 @@ void network::driver(string filename)
 				// Determine next intermediary node
 				  // Check path?
 				temp_packet = message_item.pop_packet();
-
-				// Make sure that each packet knows where its destination is!! (Were not init-ing the packets to know their destination...)
-				temp_packet.set_destination(&_graph.get_vertices().at(ending_vertex));
 
 				//TEMPORARILY SETTING NEXT HOP TO DESTINATION!
 				temp_packet.set_next_hop(&_graph.get_vertices().at(ending_vertex));
@@ -145,7 +144,7 @@ void network::driver(string filename)
 					i.get_next_hop()->set_load_factor(i.get_next_hop()->get_load_factor() - 1);
 
 					// If packet has not reached final dest, schedule another transmission using the first loop (Alter nodes transmitting packet)
-					if (i.get_destination()->get_id() != ending_vertex)
+					if (i.get_destination()->get_id() == ending_vertex)
 					{
 						// Schedule another transmission
 						// Compute the shortest route
@@ -178,8 +177,6 @@ void network::driver(string filename)
 			}
 		}
 	}
-
-
 }
 
 void network::file_processor(string filename)

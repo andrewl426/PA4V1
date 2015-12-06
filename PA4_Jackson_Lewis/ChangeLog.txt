@@ -56,3 +56,8 @@ Unknown
 		Justin - All setters and getters function.
 9:28pm
 		Andrew - File processing now works! Also Djikstras is implemented. Graph is created. Justin pseudocoded out the algorithm from Adam. Justin created a print of our graph.
+
+12/6/15
+
+6:10am
+		Justin - Couldn't sleep, worked for several hours... Comiting all... Stuck in an infi-loop. The for loop starting at NETWORK.CPP line 131 is not displaying values, 'i' apears to point at nothing... I dont understand..

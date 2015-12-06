@@ -4,6 +4,7 @@
 // Includes
 #include "Includes.h"
 #include "Vertex.h"
+#include "Path.h"
 
 // Class definition
 class packet
@@ -16,10 +17,11 @@ public:
 	vertex* _destination;
 	vertex* _previous_location;
 	vertex* _next_hop;
+	path _packets_path;
 
 	// Constructors
 	packet();
-	packet::packet(char new_value, int new_order);
+	packet(char new_value, int new_order);
 	packet(char new_value, int new_order, int new_current_wait, vertex* new_destination, vertex* new_previous_location, vertex* new_next_hop);
 
 	// Copy Constructor
@@ -32,7 +34,8 @@ public:
 	const int get_current_wait();
 	const vertex* get_destination();
 	vertex* get_previous_location() const;
-	const vertex* get_next_hop();
+	vertex* get_next_hop() const; 
+	path packet::get_packets_path() const;
 
 	// Setters
 	void set_value(int new_value);
@@ -41,6 +44,7 @@ public:
 	void set_destination(vertex* new_destination);
 	void set_previous_location(vertex* new_previous_location);
 	void set_next_hop(vertex* new_next_hop);
+	void set_packets_path(path new_packets_path);
 
 	// Methods
 

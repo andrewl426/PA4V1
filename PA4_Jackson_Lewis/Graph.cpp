@@ -30,7 +30,7 @@ graph::graph(unordered_map<int, vertex> new_vertices)
 // Destructor
 
 // Getters
-const unordered_map<int, vertex> graph::get_vertices()
+unordered_map<int, vertex> graph::get_vertices() const
 {
 	return _vertices;
 }
@@ -61,7 +61,7 @@ unordered_map<vertex, int> graph::computeShortestPath(vertex* start)
 	priority_queue<vertex, vector<vertex>, PathWeightComparer> dijkstra_queue{};
 
 	//reset start's path weight
-	start->setPathWeight(0);
+	start->set_path_weight(0);
 
 	//make sure that the starting vertex is in the graph
 	if (_vertices.find(start->get_id()) != _vertices.end())
@@ -89,7 +89,7 @@ unordered_map<vertex, int> graph::computeShortestPath(vertex* start)
 					vertex *next = item.first;
 					int weight = item.second * top.get_load_factor();
 
-					next->setPathWeight(weight + current_path_weight);
+					next->set_path_weight(weight + current_path_weight);
 
 					//not known?  add to heap
 					if (distances.find(*next) == distances.end())

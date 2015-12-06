@@ -15,6 +15,8 @@ public:
 	int _tick_count;
 	message _message;
 	vector<packet> in_the_network;
+	vector<packet> completed_packets;
+	path path;
 
 	// Constructors
 	network();

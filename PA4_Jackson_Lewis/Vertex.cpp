@@ -30,7 +30,7 @@ unordered_map<vertex*, int> vertex::get_edges()
 {
 	return _edges;
 }
-int vertex::get_load_factor() const
+int vertex::get_load_factor()
 {
 	return _load_factor;
 }
