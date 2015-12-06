@@ -179,6 +179,8 @@ void network::driver(string filename)
 						in_the_network[i].set_current_wait(1); // TEMPORARY INCORRECT HARDCODE
 					}
 
+					cout << in_the_network[i].get_destination()->get_id() << " " << ending_vertex << endl;
+					system("PAUSE");
 					// If packet has reached destination, add to list of completed packets
 					if (in_the_network[i].get_destination()->get_id() == ending_vertex)
 					{
