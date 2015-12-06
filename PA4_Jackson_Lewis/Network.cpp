@@ -71,20 +71,55 @@ void network::driver(string filename)
 
 
 	// Check validity of source and dest nodes and message.
+	if (true)
+	{
+		// While not done...
+		while (false) // Set to false to allow debug in current state, should be a while true loop -- while true that we are not finished (More packets to be sent, or more packets are in transmission...)
+		{
+			// If msg has more packets to send, queue the next packet for transmission at the starting location
+			if (true)
+			{
+				// Compute the shortest route
+				  // Dijkstras(start,end)
 
-	// While not done...
-		// If msg has more packets to send, queue the next packet for transmission at the starting location
-			// Compute the shortest route
-			// Determine next intermediary node
-			// Queue the packets arrival at the proper time
-			// Increase the load factor of each node that communicated this tick
+				// Determine next intermediary node
+				  // Check path?
 
-		// For each packet in the network...
-			// Decrement expected arrival time
-			// If time is <= 0, it arrived
-				// Decrease the load factor of the source and dest by 1
-				// If packet has not reached final dest, schedule another transmission using the first loop (Alter nodes transmitting packet)
-				// If packet has reached destination, add to list of completed packets
+				// Queue the packets arrival at the proper time
+				  // push onto queue?
+
+				// Increase the load factor of each node that communicated this tick
+				  //nodes++
+			}
+
+			// For each packet in the network...
+			if (true)
+			{
+				// Decrement expected arrival time
+				// Arrival --
+
+				// If time is <= 0, it arrived
+				if (true)
+				{
+					// Decrease the load factor of the source and dest by 1
+					  // Decrement load factor source
+					  // Decrement load factor dest
+
+					// If packet has not reached final dest, schedule another transmission using the first loop (Alter nodes transmitting packet)
+					if (true)
+					{
+						// Schedule another transmission
+					}
+
+					// If packet has reached destination, add to list of completed packets
+					if (true)	// current dest = ending dest
+					{
+						// push this packet to completed packets
+					}
+				}
+			}
+		}
+	}
 
 
 }
