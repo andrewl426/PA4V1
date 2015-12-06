@@ -11,6 +11,15 @@ packet::packet()
 	//_previous_location = empty!
 	//_next_hop = empty!
 }
+packet::packet(char new_value, int new_order)
+{
+	_value = new_value;
+	_order = new_order;
+	_current_wait = 0;
+	//_destination = empty!
+	//_previous_location = empty!
+	//_next_hop = empty!
+}
 packet::packet(char new_value, int new_order, int new_current_wait, vertex* new_destination, vertex* new_previous_location, vertex* new_next_hop)
 {
 	_value = new_value;

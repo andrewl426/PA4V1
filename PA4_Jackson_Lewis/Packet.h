@@ -19,6 +19,7 @@ public:
 
 	// Constructors
 	packet();
+	packet::packet(char new_value, int new_order);
 	packet(char new_value, int new_order, int new_current_wait, vertex* new_destination, vertex* new_previous_location, vertex* new_next_hop);
 
 	// Copy Constructor
