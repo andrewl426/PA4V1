@@ -65,23 +65,30 @@ void network::file_processor(string filename)
 	{
 		getline(input_file, line);
 		parsed = string_parser(line);
+		parsed.shrink_to_fit();
 
 		if (parsed.size() == 1) //This should be a new node then. 
-		{
-			
+		{			
 			_graph._vertices[stoi(parsed[0])].set_id(stoi(parsed[0]));
-			
-
 		}
 		else // this is a path
 		{
-			temp_paths[_graph._vertices[stoi(parsed[1])]] = stoi(parsed[2]);
+			temp_paths[&_graph._vertices[stoi(parsed[1])]] = stoi(parsed[2]);
 			_graph._vertices[stoi(parsed[0])].set_edges(temp_paths);
-
 		}
 
 
 	}
+
+	for (auto i : _graph.get_vertices())
+	{
+		cout << i.first << " ";
+		for (auto j : i.second.get_edges())
+		{
+			cout << j.second << endl;
+		}
+	}
+
 
 }
 
