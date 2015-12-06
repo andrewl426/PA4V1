@@ -88,7 +88,7 @@ void network::driver(string filename)
 	}
 
 	// Check validity of source and dest nodes and message.
-	if (true)
+	if (_graph.get_vertices().count(starting_vertex) && _graph.get_vertices().count(ending_vertex))
 	{
 		// While not done...
 		while (false) // Set to false to allow debug in current state, should be a while true loop -- while true that we are not finished (More packets to be sent, or more packets are in transmission...)
