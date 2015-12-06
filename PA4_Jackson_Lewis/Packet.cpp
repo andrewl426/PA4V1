@@ -51,13 +51,17 @@ const vertex* packet::get_destination()
 {
 	return _destination;
 }
- vertex* packet::get_previous_location() const
+vertex* packet::get_previous_location() const
 {
 	return _previous_location;
 }
-const vertex* packet::get_next_hop()
+vertex* packet::get_next_hop() const
 {
 	return _next_hop;
+}
+path packet::get_packets_path() const
+{
+	return _packets_path;
 }
 
 // Setters
@@ -84,6 +88,10 @@ void packet::set_previous_location(vertex * new_previous_location)
 void packet::set_next_hop(vertex * new_next_hop)
 {
 	_next_hop = new_next_hop;
+}
+void packet::set_packets_path(path new_packets_path)
+{
+	_packets_path = new_packets_path;
 }
 
 // Methods
