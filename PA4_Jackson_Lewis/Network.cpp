@@ -70,6 +70,23 @@ void network::driver(string filename)
 	cin >> ending_vertex;
 
 
+	// Check validity of source and dest nodes and message.
+
+	// While not done...
+		// If msg has more packets to send, queue the next packet for transmission at the starting location
+			// Compute the shortest route
+			// Determine next intermediary node
+			// Queue the packets arrival at the proper time
+			// Increase the load factor of each node that communicated this tick
+
+		// For each packet in the network...
+			// Decrement expected arrival time
+			// If time is <= 0, it arrived
+				// Decrease the load factor of the source and dest by 1
+				// If packet has not reached final dest, schedule another transmission using the first loop (Alter nodes transmitting packet)
+				// If packet has reached destination, add to list of completed packets
+
+
 }
 
 void network::file_processor(string filename)
