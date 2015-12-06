@@ -64,11 +64,11 @@ void network::driver(string filename)
 	file_processor(filename);
 	unordered_map<vertex, int> distances;
 
-	cin.clear();
-	fflush(stdin);
-
 	cout << "Enter a message to send: ";
-	getline(cin, message_text);
+	getline(cin, message_text); // Eat newline
+	cin.clear(); // clear buffer
+	fflush(stdin); // clear buffer
+	getline(cin, message_text); // Get users msg
 	cout << endl;
 
 	cout << "Enter a starting vertex: ";
