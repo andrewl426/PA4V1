@@ -75,7 +75,7 @@ void network::file_processor(string filename)
 		}
 		else // this is a path
 		{
-			temp_paths[stoi(parsed[1])] = stoi(parsed[2]);
+			temp_paths[_graph._vertices[stoi(parsed[1])]] = stoi(parsed[2]);
 			_graph._vertices[stoi(parsed[0])].set_edges(temp_paths);
 
 		}
