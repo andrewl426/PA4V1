@@ -114,17 +114,23 @@ void network::driver(string filename)
 			}
 
 			// For each packet in the network...
-			if (true)
+			for (auto i : in_the_network)
 			{
 				// Decrement expected arrival time
 				// Arrival --
+				i.set_current_wait((i.get_current_wait() - 1)); // Not sure if this works
 
 				// If time is <= 0, it arrived
-				if (true)
+				if (i.get_current_wait() <= 0) // Not sure if this works
 				{
 					// Decrease the load factor of the source and dest by 1
-					  // Decrement load factor source
-					  // Decrement load factor dest
+					// Decrement load factor source
+					
+					// This may be wrong...
+					//i.get_previous_location()->set_load_factor((i.get_previous_location()->get_load_factor() - 1));
+					
+					// Decrement load factor dest
+//******************i.get_destination()->set_load_factor() // Not sure if this works {IT SHOULDN'T TIRED!} *************************************************************
 
 					// If packet has not reached final dest, schedule another transmission using the first loop (Alter nodes transmitting packet)
 					if (true)
