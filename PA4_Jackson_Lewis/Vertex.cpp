@@ -7,12 +7,14 @@ vertex::vertex()
 	_id = 0;
 	//_edges = empty!
 	_load_factor = 0;
+	_path_weight = 0;
 }
 vertex::vertex(int new_id, unordered_map<vertex*, int> new_edges, int new_load_factor)
 {
 	_id = new_id;
 	_edges = new_edges;
 	_load_factor = new_load_factor;
+	_path_weight = 0;
 }
 
 // Copy Consturctor
@@ -50,9 +52,9 @@ void vertex::set_load_factor(int new_load_factor)
 {
 	_load_factor = new_load_factor;
 }
-void vertex::setPathWeight(int weight)
+void vertex::set_path_weight(int new_weight)
 {
-	_path_weight = weight;
+	_path_weight = new_weight;
 }
 
 // Methods
