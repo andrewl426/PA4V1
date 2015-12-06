@@ -131,49 +131,50 @@ void network::driver(string filename)
 			system("PAUSE");
 
 			// For each packet in the network...
-			for (auto i : in_the_network)
+			
+			for (int i = 0; i < in_the_network.size(); i++)			//for (auto i : in_the_network)
 			{
 				// Decrement expected arrival time
 				// Arrival --
-				i.set_current_wait((i.get_current_wait() - 1)); // Not sure if this works
+				in_the_network[i].set_current_wait((in_the_network[i].get_current_wait() - 1)); // Not sure if this works
 
 				// If time is <= 0, it arrived
-				if (i.get_current_wait() <= 0) // Not sure if this works
+				if (in_the_network[i].get_current_wait() <= 0) // Not sure if this works
 				{
 					// Decrement load factor source
-					i.get_previous_location()->set_load_factor(i.get_previous_location()->get_load_factor() - 1);
+					in_the_network[i].get_previous_location()->set_load_factor(in_the_network[i].get_previous_location()->get_load_factor() - 1);
 					
 					// Decrement load factor dest
-					i.get_next_hop()->set_load_factor(i.get_next_hop()->get_load_factor() - 1);
+					in_the_network[i].get_next_hop()->set_load_factor(in_the_network[i].get_next_hop()->get_load_factor() - 1);
 
 					// If packet has not reached final dest, schedule another transmission using the first loop (Alter nodes transmitting packet)
-					if (i.get_destination()->get_id() == ending_vertex)
+					if (in_the_network[i].get_destination()->get_id() == ending_vertex)
 					{
 						// Schedule another transmission
 						// Compute the shortest route
-						distances = _graph.computeShortestPath(i.get_previous_location());
+						distances = _graph.computeShortestPath(in_the_network[i].get_previous_location());
 
-						for (auto i : distances)
+						for (auto j : distances) // changed to j in case the i loop within an i loop was casuing issues.
 						{
-							cout << endl << "I.first.get_id(): " << i.first.get_id() << " I.second: " << i.second;
+							cout << endl << "J.first.get_id(): " << j.first.get_id() << " J.second: " << j.second;
 						}
 
 						// Determine next intermediary node
 						// Check path?
 
 						//TEMPORARILY SETTING NEXT HOP TO DESTINATION!
-						i.set_next_hop(&_graph.get_vertices().at(ending_vertex));
+						in_the_network[i].set_next_hop(&_graph.get_vertices().at(ending_vertex));
 
 						// Queue the packets arrival at the proper time
 						// push onto queue?
-						i.set_current_wait(1); // TEMPORARY INCORRECT HARDCODE
+						in_the_network[i].set_current_wait(1); // TEMPORARY INCORRECT HARDCODE
 					}
 
 					// If packet has reached destination, add to list of completed packets
-					if (i.get_destination()->get_id() == ending_vertex)
+					if (in_the_network[i].get_destination()->get_id() == ending_vertex)
 					{
 						// push this packet to completed packets
-						completed_packets.push_back(i);
+						completed_packets.push_back(in_the_network[i]);
 						in_the_network.pop_back(); // I'm not sure, but i believe that what is popped and what is pushed should be the same. The idea is to push the completed node onto completed, and pop it from in the network...
 					}
 				}
