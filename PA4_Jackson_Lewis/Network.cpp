@@ -137,7 +137,7 @@ void network::driver(string filename)
 			}
 
 			cout << in_the_network.size() << endl;
-			system("PAUSE");
+			//system("PAUSE");
 
 			// For each packet in the network...
 			
@@ -184,7 +184,9 @@ void network::driver(string filename)
 					{
 						// push this packet to completed packets
 						completed_packets.push_back(in_the_network[i]);
-						in_the_network.pop_back(); // I'm not sure, but i believe that what is popped and what is pushed should be the same. The idea is to push the completed node onto completed, and pop it from in the network...
+						//in_the_network.; // I'm not sure, but i believe that what is popped and what is pushed should be the same. The idea is to push the completed node onto completed, and pop it from in the network...
+						in_the_network.erase(in_the_network.begin()+i);
+						in_the_network.shrink_to_fit();
 					}
 				}
 			}
