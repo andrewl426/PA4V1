@@ -8,7 +8,7 @@ vertex::vertex()
 	//_edges = empty!
 	_load_factor = 0;
 }
-vertex::vertex(int new_id, unordered_map<vertex*, int> new_edges, int new_load_factor)
+vertex::vertex(int new_id, unordered_map<int, int> new_edges, int new_load_factor)
 {
 	_id = new_id;
 	_edges = new_edges;
