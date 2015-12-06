@@ -61,3 +61,5 @@ Unknown
 
 6:10am
 		Justin - Couldn't sleep, worked for several hours... Comiting all... Stuck in an infi-loop. The for loop starting at NETWORK.CPP line 131 is not displaying values, 'i' apears to point at nothing... I dont understand..
+12:11pm
+		Andrew - Found bug when a space is entered. Program crashes.

@@ -64,14 +64,20 @@ void network::driver(string filename)
 	file_processor(filename);
 	unordered_map<vertex, int> distances;
 
+	cin.clear();
+	fflush(stdin);
+
 	cout << "Enter a message to send: ";
 	getline(cin, message_text);
 	cout << endl;
+
 	cout << "Enter a starting vertex: ";
 	cin >> starting_vertex;
 	cout << endl;
+
 	cout << "Enter a destination vertex: ";
 	cin >> ending_vertex;
+
 
 	// Turn message into message item
 	for (auto i : message_text)
