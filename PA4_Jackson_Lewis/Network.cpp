@@ -96,6 +96,7 @@ void network::driver(string filename)
 			// If msg has more packets to send, queue the next packet for transmission at the starting location
 			if (true)
 			{
+
 				// Compute the shortest route
 				  // Dijkstras(start,end)
 
@@ -107,6 +108,8 @@ void network::driver(string filename)
 
 				// Increase the load factor of each node that communicated this tick
 				  //nodes++
+
+				in_the_network.push_back(temp_packet);
 			}
 
 			// For each packet in the network...
