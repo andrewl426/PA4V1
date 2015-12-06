@@ -56,23 +56,28 @@ void network::tick()
 void network::file_processor(string filename)
 {
 	ifstream input_file{ filename };
-	int node_check = 0;
-
-
+	string line = "";
+	vector<string> parsed;
+	unordered_map<vertex*, int> temp_paths;
+	int i = 0;
 
 	while (input_file.good() == true)
 	{
-		vector<string> parsed;
+		getline(input_file, line);
+		parsed = string_parser(line);
 
 		if (parsed.size() == 1) //This should be a new node then. 
 		{
-
+			
 			_graph._vertices[stoi(parsed[0])].set_id(stoi(parsed[0]));
-
+			
 
 		}
 		else // this is a path
 		{
+			
+			temp_paths[stoi(parsed[1])].setPathWeight(stoi(parsed[2]));
+			_graph._vertices[stoi(parsed[0])].set_edges(temp_paths);
 
 		}
 
@@ -84,7 +89,7 @@ void network::file_processor(string filename)
 vector<string> network::string_parser(string tobeparsed)
 {
 	vector<string> pieces{};
-	string delimiter = "\n";
+	string delimiter = " ";
 
 	//keep track of starting location for substring
 	int start = 0;
