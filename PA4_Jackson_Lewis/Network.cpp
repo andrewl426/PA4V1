@@ -65,7 +65,7 @@ void network::driver(string filename)
 	unordered_map<vertex, int> distances;
 
 	cout << "Enter a message to send: ";
-	cin >> message_text;
+	cin.getline(message_text, sizeof(message_text));
 	cout << endl;
 	cout << "Enter a starting vertex: ";
 	cin >> starting_vertex;
