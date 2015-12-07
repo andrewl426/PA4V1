@@ -117,11 +117,11 @@ void network::driver(string filename)
 			{
 
 				// Compute the shortest route
-// CRASHES		distances =_graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
+				distances =_graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
 
 				for (auto i : distances)
 				{
-					cout << endl << "I.first.get_id(): " << i.first.get_id() << " I.second: " << i.second;
+					//cout << endl << "I.first.get_id(): " << i.first.get_id() << " I.second: " << i.second;
 				}
 
 				// Determine next intermediary node
@@ -170,7 +170,7 @@ void network::driver(string filename)
 
 						for (auto j : distances) // changed to j in case the i loop within an i loop was casuing issues.
 						{
-							cout << endl << "J.first.get_id(): " << j.first.get_id() << " J.second: " << j.second;
+							//cout << endl << "J.first.get_id(): " << j.first.get_id() << " J.second: " << j.second;
 						}
 
 						// Determine next intermediary node
@@ -184,7 +184,7 @@ void network::driver(string filename)
 						in_the_network[i].set_current_wait(1); // TEMPORARY INCORRECT HARDCODE
 					}
 
-					cout << in_the_network[i].get_destination()->get_id() << " " << ending_vertex << endl;
+					//cout << in_the_network[i].get_destination()->get_id() << " " << ending_vertex << endl;
 					system("PAUSE");
 					// If packet has reached destination, add to list of completed packets
 					if (in_the_network[i].get_destination()->get_id() == ending_vertex)
