@@ -80,10 +80,10 @@ unordered_map<vertex, int> graph::computeShortestPath(vertex start)
 			if (distances.find(top) == distances.end())
 			{
 
-				cout << top.get_load_factor() << endl;
+				//cout << top.get_load_factor() << endl;
 				//make known
 				int current_path_weight = top.getPathWeight() * top.get_load_factor();
-				cout << "Current path weight: " << current_path_weight << endl;
+				//cout << "Current path weight: " << current_path_weight << endl;
 				distances[top] = current_path_weight;
 
 				//push on outgoing edges
