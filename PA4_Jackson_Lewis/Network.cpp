@@ -103,6 +103,7 @@ void network::driver(string filename)
 			temp_packet.set_previous_location(_graph.get_vertices().at(starting_vertex));
 			// Init next location to source... (makes sure its initialized...)
 			temp_packet.set_next_hop(_graph.get_vertices().at(starting_vertex));
+			temp_packet.set_current_wait(_graph.get_vertices().at(starting_vertex).getPathWeight());
 			// Init dest to ending vertex...
 			temp_packet.set_destination(_graph.get_vertices().at(ending_vertex));
 			temp_packet.get_destination()->set_id(ending_vertex);				
@@ -134,10 +135,11 @@ void network::driver(string filename)
 			{
 
 				cout << "Sending packet " << message_item._packets.front().get_value() << " to vertex " << message_item.get_ending_vertex().get_id() 
-					<< " with a wait of " << message_item._packets.front().get_current_wait() << " at time " << ticker << endl;
+					<< " with a wait of " << message_item._packets.front().get_current_wait()+ ticker << " at time " << ticker << endl;
 
 				// Compute the shortest route
 				distances =_graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
+				
 
 				int k = 0;
 
@@ -172,7 +174,6 @@ void network::driver(string filename)
 				in_the_network.push_back(temp_packet);
 			}
 
-			cout << in_the_network.size() << endl;
 			//system("PAUSE");
 
 			// For each packet in the network...
@@ -224,7 +225,7 @@ void network::driver(string filename)
 					}
 
 					//cout << in_the_network[i].get_destination()->get_id() << " " << ending_vertex << endl;
-					system("PAUSE");
+					//system("PAUSE");
 					// If packet has reached destination, add to list of completed packets
 					if (in_the_network[i].get_destination()->get_id() == ending_vertex)
 					{
@@ -272,6 +273,7 @@ void network::file_processor(string filename)
 		{
 			temp_paths[&_graph._vertices[stoi(parsed[1])]] = stoi(parsed[2]);
 			_graph._vertices[stoi(parsed[0])].set_edges(temp_paths);
+			_graph._vertices[stoi(parsed[0])].set_path_weight(stoi(parsed[2]));
 		}
 	}
 
@@ -294,17 +296,6 @@ void network::file_processor(string filename)
 		}
 	}
 
-	/*
-	for (auto i : _graph.get_vertices())
-	{
-		cout << "Vertex: " << i.first << endl;
-		for (auto j : i.second.get_edges())
-		{
-			cout << "Edge: " << j.first->get_id() << endl;
-			cout << "Weig: " << j.second << endl;
-		}
-	}	
-	*/
 
 	cout << endl;
 
