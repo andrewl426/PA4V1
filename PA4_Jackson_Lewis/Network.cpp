@@ -61,8 +61,10 @@ void network::driver(string filename)
 	int j = 0; // used to keep track of message order
 	int starting_vertex;
 	int ending_vertex;
+	int ticker = 0;
 	file_processor(filename);
 	unordered_map<vertex, int> distances;
+	vertex temp_vertex;
 
 	cout << "Enter a message to send: ";
 	getline(cin, message_text); // Eat newline
@@ -122,14 +124,23 @@ void network::driver(string filename)
 			if (!message_item.get_packets().empty())
 			{
 
+				cout << "Sending packet " << message_item._packets.front().get_value() << " to vertex " << message_item.get_ending_vertex()->get_id() 
+					<< " with a wait of " << message_item.get_ending_vertex()->getPathWeight() << " at time " << ticker << endl;
+
 				// Compute the shortest route
 				distances =_graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
 
+				int k = 0;
 
 				for (auto i : distances)
 				{
+					if (k == 0)
+					{
+						temp_vertex = i.first;
+					}
 					//cout << endl << "I.first.get_id(): " << i.first.get_id() << " I.second: " << i.second;
 					temp_packet.get_packets_path().push_vertex(i.first);
+					k++;
 				}
 
 				// Determine next intermediary node
@@ -137,11 +148,14 @@ void network::driver(string filename)
 				temp_packet = message_item.pop_packet();
 
 				//TEMPORARILY SETTING NEXT HOP TO DESTINATION!
-				temp_packet.set_next_hop(_graph.get_vertices().at(ending_vertex));
+				//temp_packet.set_next_hop(_graph.get_vertices().at(ending_vertex));
+				
+
+				temp_packet.set_next_hop(temp_vertex);
 
 				// Queue the packets arrival at the proper time
 				  // push onto queue?
-// CRASHES		temp_packet.set_current_wait( (temp_packet.get_previous_location()->get_edges().at(temp_packet.get_next_hop())) * temp_packet.get_next_hop()->get_load_factor()); // TEMPORARY INCORRECT HARDCODE
+				//temp_packet.set_current_wait( (temp_packet.get_previous_location()->get_edges().at(temp_packet.get_next_hop())) * temp_packet.get_next_hop()->get_load_factor());
 
 				// Increase the load factor of each node that communicated this tick
 				  //nodes++
@@ -213,6 +227,7 @@ void network::driver(string filename)
 					}
 				}
 			}
+			ticker++;
 		}
 	}
 }
