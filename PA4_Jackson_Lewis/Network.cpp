@@ -197,6 +197,9 @@ void network::driver(string filename)
 					{
 						in_the_network[i].get_previous_location()->set_load_factor(in_the_network[i].get_previous_location()->get_load_factor() - 1);
 					}
+					
+		//ANDREW LOOK HERE
+					//change logic to instead check if tick is the same as the calculated wait? Thus keeping the load factor like Adams.
 
 					// Decrement load factor dest
 					// if the loadfactor is > 1
