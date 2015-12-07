@@ -133,11 +133,15 @@ void network::driver(string filename)
 			// If msg has more packets to send, queue the next packet for transmission at the starting location
 			if (!message_item.get_packets().empty())
 			{
+				temp_packet.set_current_wait(temp_packet.get_current_wait()
+					* temp_packet.get_next_hop()->getPathWeight()); //trying to update current wait
 
 				cout << "Sending packet " << message_item._packets.front().get_value() << " to vertex " << message_item.get_ending_vertex().get_id() 
 					<< " with a wait of " << message_item._packets.front().get_current_wait()+ ticker << " at time " << ticker << endl;
 
 				// Compute the shortest route
+
+
 				distances =_graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
 				
 
@@ -170,8 +174,8 @@ void network::driver(string filename)
 
 				// Increase the load factor of each node that communicated this tick
 				  //nodes++
-
 				in_the_network.push_back(temp_packet);
+		
 			}
 
 			//system("PAUSE");
