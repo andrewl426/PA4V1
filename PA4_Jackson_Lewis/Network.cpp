@@ -125,7 +125,7 @@ void network::driver(string filename)
 			{
 
 				cout << "Sending packet " << message_item._packets.front().get_value() << " to vertex " << message_item.get_ending_vertex()->get_id() 
-					<< " with a wait of " << message_item.get_ending_vertex()->getPathWeight() << " at time " << ticker << endl;
+					<< " with a wait of " << message_item._packets.front().get_current_wait() << " at time " << ticker << endl;
 
 				// Compute the shortest route
 				distances =_graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
