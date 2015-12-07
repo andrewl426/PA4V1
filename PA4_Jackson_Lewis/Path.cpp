@@ -7,7 +7,7 @@ path::path()
 	//_vertices = empty!
 	_distance_traveled = 0;
 }
-path::path(stack<vertex*> new_vertices, int new_distance_traveled)
+path::path(stack<vertex> new_vertices, int new_distance_traveled)
 {
 	_vertices = new_vertices;
 	_distance_traveled = new_distance_traveled;
@@ -18,7 +18,7 @@ path::path(stack<vertex*> new_vertices, int new_distance_traveled)
 // Destructor
 
 // Getters
-stack<vertex*> path::get_vertices() const
+stack<vertex> path::get_vertices() const
 {
 	return _vertices;
 }
@@ -28,7 +28,7 @@ int path::get_distance_traveled() const
 }
 
 // Setters
-void path::set_vertices(stack<vertex*> new_vertices)
+void path::set_vertices(stack<vertex> new_vertices)
 {
 	_vertices = new_vertices;
 }
@@ -38,13 +38,13 @@ void path::set_distance_traveled(int new_distance_traveled)
 }
 
 // Methods
-void path::push_vertex(vertex* next_vertex)
+void path::push_vertex(vertex next_vertex)
 {
 	_vertices.push(next_vertex);
 }
-vertex* path::pop_vertex()
+vertex path::pop_vertex()
 {
-	vertex* ret_val = nullptr;
+	vertex ret_val;
 	ret_val = _vertices.top();
 	_vertices.pop();
 
