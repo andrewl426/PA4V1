@@ -125,9 +125,11 @@ void network::driver(string filename)
 				// Compute the shortest route
 				distances =_graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
 
+
 				for (auto i : distances)
 				{
 					//cout << endl << "I.first.get_id(): " << i.first.get_id() << " I.second: " << i.second;
+					temp_packet.get_packets_path().push_vertex(i.first);
 				}
 
 				// Determine next intermediary node
