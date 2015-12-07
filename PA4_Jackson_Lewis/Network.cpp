@@ -85,8 +85,8 @@ void network::driver(string filename)
 	if (_graph.get_vertices().count(starting_vertex) && _graph.get_vertices().count(ending_vertex))
 	{
 		// Init message_item with starting and ending vertex
-		message_item.set_starting_vertex(&_graph.get_vertices().at(starting_vertex));
-		message_item.set_ending_vertex(&_graph.get_vertices().at(ending_vertex));
+		message_item.set_starting_vertex(_graph.get_vertices().at(starting_vertex));
+		message_item.set_ending_vertex(_graph.get_vertices().at(ending_vertex));
 	}
 
 	// Turn message into message item
@@ -133,7 +133,7 @@ void network::driver(string filename)
 			if (!message_item.get_packets().empty())
 			{
 
-				cout << "Sending packet " << message_item._packets.front().get_value() << " to vertex " << message_item.get_ending_vertex()->get_id() 
+				cout << "Sending packet " << message_item._packets.front().get_value() << " to vertex " << message_item.get_ending_vertex().get_id() 
 					<< " with a wait of " << message_item._packets.front().get_current_wait() << " at time " << ticker << endl;
 
 				// Compute the shortest route
