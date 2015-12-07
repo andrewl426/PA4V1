@@ -109,6 +109,12 @@ void network::driver(string filename)
 	// Check validity of source and dest nodes and message.
 	if (_graph.get_vertices().count(starting_vertex) && _graph.get_vertices().count(ending_vertex))
 	{
+		// Set all loadfactors to 1 BASE STATE
+		for (auto i : _graph.get_vertices())
+		{
+			i.second.set_load_factor(1);
+		}
+
 		// While not done...
 		while (!message_item.get_packets().empty() || !in_the_network.empty()) // While true that we are not finished (More packets to be sent, or more packets are in transmission...)
 		{
@@ -156,10 +162,18 @@ void network::driver(string filename)
 				if (in_the_network[i].get_current_wait() <= 0) // Not sure if this works
 				{
 					// Decrement load factor source
-					in_the_network[i].get_previous_location()->set_load_factor(in_the_network[i].get_previous_location()->get_load_factor() - 1);
-					
+					// if the loadfactor is > 1
+					if (in_the_network[i].get_previous_location()->get_load_factor() > 1)
+					{
+						in_the_network[i].get_previous_location()->set_load_factor(in_the_network[i].get_previous_location()->get_load_factor() - 1);
+					}
+
 					// Decrement load factor dest
-					in_the_network[i].get_next_hop()->set_load_factor(in_the_network[i].get_next_hop()->get_load_factor() - 1);
+					// if the loadfactor is > 1
+					if (in_the_network[i].get_next_hop()->get_load_factor())
+					{
+						in_the_network[i].get_next_hop()->set_load_factor(in_the_network[i].get_next_hop()->get_load_factor() - 1);
+					}
 
 					// If packet has not reached final dest, schedule another transmission using the first loop (Alter nodes transmitting packet)
 					if (in_the_network[i].get_destination()->get_id() == ending_vertex)
