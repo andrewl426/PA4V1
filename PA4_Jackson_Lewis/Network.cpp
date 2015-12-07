@@ -141,7 +141,7 @@ void network::driver(string filename)
 
 				// Queue the packets arrival at the proper time
 				  // push onto queue?
-				temp_packet.set_current_wait(1); // TEMPORARY INCORRECT HARDCODE
+// CRASHES		temp_packet.set_current_wait( (temp_packet.get_previous_location()->get_edges().at(temp_packet.get_next_hop())) * temp_packet.get_next_hop()->get_load_factor()); // TEMPORARY INCORRECT HARDCODE
 
 				// Increase the load factor of each node that communicated this tick
 				  //nodes++
@@ -197,7 +197,7 @@ void network::driver(string filename)
 
 						// Queue the packets arrival at the proper time
 						// push onto queue?
-						in_the_network[i].set_current_wait(1); // TEMPORARY INCORRECT HARDCODE
+// CRASHES				temp_packet.set_current_wait((temp_packet.get_previous_location()->get_edges().at(temp_packet.get_next_hop())) * temp_packet.get_next_hop()->get_load_factor()); // TEMPORARY INCORRECT HARDCODE
 					}
 
 					//cout << in_the_network[i].get_destination()->get_id() << " " << ending_vertex << endl;
