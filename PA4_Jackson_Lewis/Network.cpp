@@ -62,9 +62,11 @@ void network::driver(string filename)
 	int starting_vertex;
 	int ending_vertex;
 	int ticker = 0;
-	file_processor(filename);
 	unordered_map<vertex, int> distances;
 	vertex temp_vertex;
+
+	// Run file processor
+	file_processor(filename);
 
 	cout << "Enter a message to send: ";
 	getline(cin, message_text); // Eat newline
@@ -79,6 +81,13 @@ void network::driver(string filename)
 
 	cout << "Enter a destination vertex: ";
 	cin >> ending_vertex;
+	
+	if (_graph.get_vertices().count(starting_vertex) && _graph.get_vertices().count(ending_vertex))
+	{
+		// Init message_item with starting and ending vertex
+		message_item.set_starting_vertex(&_graph.get_vertices().at(starting_vertex));
+		message_item.set_ending_vertex(&_graph.get_vertices().at(ending_vertex));
+	}
 
 	// Turn message into message item
 	for (auto i : message_text)
