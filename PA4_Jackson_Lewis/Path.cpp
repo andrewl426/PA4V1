@@ -38,14 +38,15 @@ void path::set_distance_traveled(int new_distance_traveled)
 }
 
 // Methods
-void path::push_vertex(vertex next_vertex)
+void path::push_vertex(vertex* next_vertex)
 {
 	_vertices.push(next_vertex);
 }
 vertex* path::pop_vertex()
 {
 	vertex* ret_val = nullptr;
-	ret_val = _vertices.pop();
+	ret_val = _vertices.top();
+	_vertices.pop();
 
 	return ret_val;
 }

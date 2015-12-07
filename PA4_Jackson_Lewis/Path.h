@@ -30,7 +30,7 @@ public:
 	void set_distance_traveled(int new_distance_traveled);
 
 	// Methods
-	void path::push_vertex(vertex next_vertex);
+	void path::push_vertex(vertex* next_vertex);
 	vertex* path::pop_vertex();
 
 private:
