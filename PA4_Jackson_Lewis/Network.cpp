@@ -249,7 +249,7 @@ void network::driver(string filename)
 						// Schedule another transmission
 						// Compute the shortest route
 						// Compute the shortest route
-						distances = _graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
+						//distances = _graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
 
 						// PRINT DIJKSTRA RESULTS
 						cout << "*****DISTANCES*****" << endl << endl;

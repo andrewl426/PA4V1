@@ -42,7 +42,7 @@ void graph::set_vertices(unordered_map<int, vertex> new_vertices)
 }
 
 // Methods
-unordered_map<vertex, int> graph::computeShortestPath(vertex start , int starting_vertex, int ending_vertex)
+stack<vertex> graph::computeShortestPath(vertex start , int starting_vertex, int ending_vertex)
 {
 	/*
 	A note on Dijkstra's Algorithm
@@ -57,7 +57,6 @@ unordered_map<vertex, int> graph::computeShortestPath(vertex start , int startin
 	
 	//holds known distances
 	unordered_map<vertex, int> distances;
-	unordered_map<vertex, stack<vertex>> routes;
 	stack<vertex> temp_stack;
 	
 	path for_the_stack;
@@ -89,12 +88,15 @@ cout << endl << "Push on start(id): " << start.get_id();
 			//Top of heap not known (in distances)?
 			if (distances.find(top) == distances.end())
 			{
-				routes[top] = (temp_stack); //IN theory this is our route
 				//cout << top.get_load_factor() << endl;
 				//make known
 				int current_path_weight = top.getPathWeight() * top.get_load_factor();
 				//cout << "Current path weight: " << current_path_weight << endl;
 				distances[top] = current_path_weight;
+				if (top.get_id() == ending_vertex)
+				{
+					return temp_stack;
+				}
 				
 cout << endl << endl << "vertex top(id): " << top.get_id();
 cout << endl << "vertex top(PW): " << top.getPathWeight();
@@ -144,5 +146,5 @@ cout << endl << "vertex top(LF): " << top.get_load_factor();
 
 
 
-	return distances;
+	return temp_stack;
 }
