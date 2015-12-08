@@ -129,6 +129,8 @@ void network::driver(string filename)
 	// Check validity of source and dest nodes and message.
 	if (_graph.get_vertices().count(starting_vertex) && _graph.get_vertices().count(ending_vertex))
 	{
+		cout << "*****SIMULATING*****" << endl << endl;
+
 		// Set all loadfactors to 1 BASE STATE
 		for (auto i : _graph.get_vertices())
 		{
@@ -144,8 +146,9 @@ void network::driver(string filename)
 				//temp_packet.set_current_wait(temp_packet.get_current_wait()	* temp_packet.get_next_hop()->getPathWeight()); //trying to update current wait
 				temp_packet.set_current_wait(temp_packet.get_next_hop()->getPathWeight() * temp_packet.get_next_hop()->get_load_factor()); // New set wait...
 
-				cout << "Sending packet " << message_item._packets.front().get_value() << " to vertex " << message_item.get_ending_vertex().get_id() 
-					<< " with a wait of " << message_item._packets.front().get_current_wait()+ ticker << " at time " << ticker << endl;
+				// prints adams style info
+				cout << "Sending packet " << message_item._packets.front().get_value() << " to vertex " << message_item.get_packets().front()._next_hop->get_id() 
+					<< " with a wait of " << message_item._packets.front().get_current_wait() << " at time " << ticker << endl;
 
 				// Compute the shortest route
 				distances =_graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
@@ -191,9 +194,8 @@ void network::driver(string filename)
 
 			//system("PAUSE");
 
-			// For each packet in the network...
-			
-			for (int i = 0; i < in_the_network.size(); i++)			//for (auto i : in_the_network)
+			// For each packet in the network...			
+			for (int i = 0; i < in_the_network.size(); i++)
 			{
 				// Decrement expected arrival time
 				// Arrival --
@@ -312,7 +314,7 @@ void network::file_processor(string filename)
 	}
 
 	// Prints Vertex:Id:EdgeWeight
-	cout << endl << "*****GRAPH SUMMARY*****" << endl;
+	cout << "*****GRAPH SUMMARY*****" << endl;
 	for (auto i : _graph.get_vertices())
 	{
 		// Vertex (Header)
@@ -328,8 +330,6 @@ void network::file_processor(string filename)
 			cout << endl;
 		}
 	}
-
-	cout << endl;
 }
 
 vector<string> network::string_parser(string tobeparsed)
