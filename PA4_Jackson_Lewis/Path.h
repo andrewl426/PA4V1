@@ -10,23 +10,23 @@ class path
 {
 public:
 	// Public vars
-	stack<vertex> _vertices;
+	queue<vertex> _vertices;
 	int _distance_traveled = 0;
 
 	// Constructors
 	path();
-	path(stack<vertex> new_vertices, int new_distance_traveled);
+	path(queue<vertex> new_vertices, int new_distance_traveled);
 
 	// Copy Constructor
 
 	// Destructor
 
 	// Getters
-	stack<vertex> get_vertices() const;
+	queue<vertex> get_vertices() const;
 	int get_distance_traveled() const;
 
 	// Setters
-	void set_vertices(stack<vertex> new_vertices);
+	void set_vertices(queue<vertex> new_vertices);
 	void set_distance_traveled(int new_distance_traveled);
 
 	// Methods
