@@ -211,7 +211,7 @@ void network::driver(string filename)
 					if (in_the_network[i].get_previous_location()->get_load_factor() > 1)
 					{
 						cout << "ENTERED IF LOAD FACTOR PRE..";
-						in_the_network.at(i).get_previous_location()->set_load_factor(in_the_network.at(i).get_next_hop()->get_load_factor() - 1);
+						in_the_network.at(i).get_previous_location()->set_load_factor(in_the_network.at(i).get_previous_location()->get_load_factor() - 1);
 						//in_the_network[i].get_previous_location()->set_load_factor(in_the_network[i].get_previous_location()->get_load_factor() - 1);
 
 						cout << " LoF: " << in_the_network[i].get_previous_location()->get_load_factor() << " ";
