@@ -64,6 +64,7 @@ void network::driver(string filename)
 	int ticker = 0;
 	unordered_map<vertex, int> distances;
 	vertex temp_vertex;
+	stack<vertex> temp_stack;
 
 	// Run file processor
 	file_processor(filename);
@@ -151,8 +152,9 @@ void network::driver(string filename)
 					<< " with a wait of " << message_item._packets.front().get_current_wait() << " at time " << ticker << endl;
 
 				// Compute the shortest route
-				distances =_graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
-				
+				temp_stack = _graph.computeShortestPath(_graph.get_vertices().at(starting_vertex), _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
+
+				temp_packet.get_packets_path().set_vertices(temp_stack);
 				// PRINT DIJKSTRA RESULTS
 				cout << "*****DISTANCES*****" << endl << endl;
 				cout << "Path";
