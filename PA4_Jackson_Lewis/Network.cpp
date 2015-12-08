@@ -171,10 +171,11 @@ void network::driver(string filename)
 
 				temp_packet.set_previous_location(_graph.get_vertices().at(temp_packet.get_next_hop()->get_id()));//initializiing temp packet
 				temp_packet.set_next_hop(_graph.get_vertices().at(temp_vertex.get_id()));
+				//temp_packet.get_previous_location()->set_edges();
 
 				// Queue the packets arrival at the proper time
 				  // push onto queue?
-				temp_packet.set_current_wait( (temp_packet.get_previous_location()->get_edges().at(temp_packet.get_next_hop())) * temp_packet.get_next_hop()->get_load_factor());
+				temp_packet.set_current_wait(temp_packet.get_next_hop()->getPathWeight() * temp_packet.get_next_hop()->get_load_factor());
 
 				// Increase the load factor of each node that communicated this tick
 				// Update source load factor
