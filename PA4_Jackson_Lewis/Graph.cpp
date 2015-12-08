@@ -75,7 +75,6 @@ cout << endl << "start.path_weight: " << start.getPathWeight();
 	{
 		//push on starting vertex
 		dijkstra_queue.push(start);
-		temp_stack.push(start);//PUSH onto temp stack
 cout << endl << "Push on start(id): " << start.get_id();
 
 
