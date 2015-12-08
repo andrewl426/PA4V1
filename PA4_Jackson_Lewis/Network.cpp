@@ -68,6 +68,7 @@ void network::driver(string filename)
 	// Run file processor
 	file_processor(filename);
 
+	// Get info from user
 	cout << "Enter a message to send: ";
 	getline(cin, message_text); // Eat newline
 	cin.clear(); // clear buffer
@@ -82,6 +83,7 @@ void network::driver(string filename)
 	cout << "Enter a destination vertex: ";
 	cin >> ending_vertex;
 	
+	// If the vertices are valid
 	if (_graph.get_vertices().count(starting_vertex) && _graph.get_vertices().count(ending_vertex))
 	{
 		// Init message_item with starting and ending vertex
@@ -89,7 +91,8 @@ void network::driver(string filename)
 		message_item.set_ending_vertex(_graph.get_vertices().at(ending_vertex));
 	}
 
-	// Turn message into message item
+	// Turn message into message item full of packets
+	cout << endl << "*****PACKET SUMMARY*****" << endl;
 	for (auto i : message_text)
 	{
 		// Set packets char
@@ -112,7 +115,10 @@ void network::driver(string filename)
 		// Add new packet to the message's packet queue, _packets
 		message_item.add_packet(temp_packet);
 
-		cout << "___PACKET___" << endl << "Val: " << temp_packet.get_value() << endl << "Ord: " << temp_packet.get_order() << endl << "Wai: " << temp_packet.get_current_wait() << endl << "Pre: " << temp_packet.get_previous_location()->get_id() << endl << "Nex: " << temp_packet.get_next_hop()->get_id() << endl << "Des: " << temp_packet.get_destination()->get_id() << endl;
+		// Print full packet info
+		cout << "___PACKET___" << endl << "Val: " << temp_packet.get_value() << endl << "Ord: " << temp_packet.get_order() << endl
+			<< "Wai: " << temp_packet.get_current_wait() << endl << "Pre: " << temp_packet.get_previous_location()->get_id() << endl 
+			<< "Nex: " << temp_packet.get_next_hop()->get_id() << endl << "Des: " << temp_packet.get_destination()->get_id() << endl << endl;
 
 		// Increment order counter
 		j++;
@@ -133,18 +139,14 @@ void network::driver(string filename)
 			// If msg has more packets to send, queue the next packet for transmission at the starting location
 			if (!message_item.get_packets().empty())
 			{
-				temp_packet.set_current_wait(temp_packet.get_current_wait()
-					* temp_packet.get_next_hop()->getPathWeight()); //trying to update current wait
+				temp_packet.set_current_wait(temp_packet.get_current_wait()	* temp_packet.get_next_hop()->getPathWeight()); //trying to update current wait
 
 				cout << "Sending packet " << message_item._packets.front().get_value() << " to vertex " << message_item.get_ending_vertex().get_id() 
 					<< " with a wait of " << message_item._packets.front().get_current_wait()+ ticker << " at time " << ticker << endl;
 
 				// Compute the shortest route
-
-
 				distances =_graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
 				
-
 				int k = 0;
 
 				for (auto i : distances)
@@ -164,8 +166,6 @@ void network::driver(string filename)
 
 				//TEMPORARILY SETTING NEXT HOP TO DESTINATION!
 				//temp_packet.set_next_hop(_graph.get_vertices().at(ending_vertex));
-				
-
 				temp_packet.set_next_hop(temp_vertex);
 
 				// Queue the packets arrival at the proper time
@@ -173,9 +173,6 @@ void network::driver(string filename)
 				//temp_packet.set_current_wait( (temp_packet.get_previous_location()->get_edges().at(temp_packet.get_next_hop())) * temp_packet.get_next_hop()->get_load_factor());
 
 				// Increase the load factor of each node that communicated this tick
-				  //nodes++
-				in_the_network.push_back(temp_packet);
-				
 				// Update source load factor
 				temp_packet.get_previous_location()->set_load_factor(temp_packet.get_previous_location()->get_load_factor()+1);
 				// Update dest load factor
@@ -185,6 +182,8 @@ void network::driver(string filename)
 				cout << endl << "FIRST LOOP:  Pre: " << temp_packet.get_previous_location()->get_id() << " LoF: " << temp_packet.get_previous_location()->get_load_factor();
 				cout << endl << "FIRST LOOP:  Nex: " << temp_packet.get_next_hop()->get_id() << " LoF: " << temp_packet.get_next_hop()->get_load_factor() << endl << endl;
 		
+				// Push temp_packet into the network vector
+				in_the_network.push_back(temp_packet);
 			}
 
 			//system("PAUSE");
@@ -220,7 +219,7 @@ void network::driver(string filename)
 						cout << "ENTERED IF LOAD FACTOR NEX..";
 						in_the_network[i].get_next_hop()->set_load_factor(in_the_network[i].get_next_hop()->get_load_factor() - 1);
 
-						cout << " LoF: " << in_the_network[i].get_next_hop()->get_load_factor() - 1;
+						cout << " LoF: " << in_the_network[i].get_next_hop()->get_load_factor() - 1 << " ";
 					}
 
 					// If packet has not reached final dest, schedule another transmission using the first loop (Alter nodes transmitting packet)
@@ -309,28 +308,25 @@ void network::file_processor(string filename)
 		}
 	}
 
-	cout << "Graph Created." << endl;
-
 	// Prints Vertex:Id:EdgeWeight
+	cout << endl << "*****GRAPH SUMMARY*****" << endl;
 	for (auto i : _graph.get_vertices())
 	{
 		// Vertex (Header)
-		cout << endl << i.first << endl << "____________" << endl;
+		cout << endl << "Vertex: " << i.first << endl << "Paths:" << endl;
 		for (auto j : i.second.get_edges())
 		{
 			// Source
-			cout << i.first << " ";
+			cout << "   Src: " << i.first << " ";
 			// Dest ID
-			cout << j.first->get_id() << " ";
+			cout << "   Des: " << j.first->get_id() << " ";
 			// Edge Weight
-			cout << j.second << " ";
+			cout << "   Wei: " << j.second << " ";
 			cout << endl;
 		}
 	}
 
-
 	cout << endl;
-
 }
 
 vector<string> network::string_parser(string tobeparsed)
