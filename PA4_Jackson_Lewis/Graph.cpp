@@ -62,7 +62,7 @@ unordered_map<vertex, int> graph::computeShortestPath(vertex start)
 	//underlying heap
 	priority_queue<vertex, vector<vertex>, PathWeightComparer> dijkstra_queue{};
 
-cout << endl << endl << "*****STA DIJKSTRAS*****" << endl;
+cout << endl << "*****STA DIJKSTRAS*****" << endl;
 
 	//reset start's path weight
 	start.set_path_weight(0);
@@ -119,12 +119,23 @@ cout << endl << "vertex top(LF): " << top.get_load_factor();
 	}
 	cout << endl << endl << "*****END DIJKSTRAS*****" << endl << endl;
 
-	cout << "*****DISTANCES*****" << endl << endl;
+	/*cout << "*****DISTANCES*****" << endl << endl;
+	cout << "Path";
 	for (auto i : distances)
 	{
 		cout << " -> V" << i.first.get_id() << ", W" << i.second;
 	}
-	cout << endl << endl << "*****END DISTS*****" << endl;
+	cout << endl << "Distance to dest: ";
+	for (auto i : distances)
+	{
+		if (i.first.get_id() == 1)
+		{
+			cout << " -> V" << i.first.get_id() << ", W" << i.second;
+		}
+	}
+	cout << endl << endl << "*****END DISTS*****" << endl;*/
+
+
 
 	return distances;
 }

@@ -153,6 +153,23 @@ void network::driver(string filename)
 				// Compute the shortest route
 				distances =_graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
 				
+				// PRINT DIJKSTRA RESULTS
+				cout << "*****DISTANCES*****" << endl << endl;
+				cout << "Path";
+				for (auto i : distances)
+				{
+					cout << " -> V" << i.first.get_id() << ", W" << i.second;
+				}
+				cout << endl << endl << "Distance to dest: ";
+				for (auto i : distances)
+				{
+					if (i.first.get_id() == ending_vertex)
+					{
+						cout << " -> V" << i.first.get_id() << ", W" << i.second;
+					}
+				}
+				cout << endl << endl << "*****END DISTS*****" << endl;
+
 				// Grab the shortest path out of distances (ie. the next_hop)
 				int k = 0;
 				for (auto i : distances)
