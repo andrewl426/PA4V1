@@ -154,11 +154,7 @@ void network::driver(string filename)
 			{
 				//temp_packet.set_current_wait(temp_packet.get_current_wait()	* temp_packet.get_next_hop()->getPathWeight()); //trying to update current wait
 				temp_packet.set_current_wait(temp_packet.get_next_hop()->getPathWeight() * temp_packet.get_next_hop()->get_load_factor()); // New set wait...
-
-				// prints adams style info
-				cout << "Sending packet " << message_item._packets.front().get_value() << " to vertex " << message_item.get_packets().front()._next_hop->get_id() 
-					<< " with a wait of " << message_item._packets.front().get_current_wait() << " at time " << ticker << endl;
-
+								
 				// Compute the shortest route
 				temp_stack = _graph.computeShortestPath(_graph.get_vertices().at(starting_vertex), _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
 				
@@ -170,11 +166,11 @@ void network::driver(string filename)
 				}
 
 				// Print all of stack...
-				for (int i = 0; i < reversed_temp_stack.size(); i++)
-				{
-					cout << endl << "TS: " << reversed_temp_stack.top().get_id();
-					reversed_temp_stack.pop();
-				}
+//				for (int i = 0; i < reversed_temp_stack.size(); i++)
+//				{
+//					cout << endl << "TS: " << reversed_temp_stack.top().get_id();
+//					reversed_temp_stack.pop();
+//				}
 
 				temp_packet.get_packets_path().set_vertices(reversed_temp_stack);
 				
@@ -247,6 +243,10 @@ void network::driver(string filename)
 		
 				// Push temp_packet into the network vector
 				in_the_network.push_back(temp_packet);
+
+				// prints adams style info
+				cout << "Sending packet " << temp_packet.get_value() << " to vertex " << temp_packet._next_hop->get_id()
+					<< " with a wait of " << temp_packet.get_current_wait() << " at time " << ticker << endl;
 			}
 
 
@@ -299,11 +299,11 @@ void network::driver(string filename)
 						}
 
 						// Print all of stack...
-						for (int i = 0; i < reversed_temp_stack.size(); i++)
-						{
-							cout << endl << "TS: " << reversed_temp_stack.top().get_id();
-							reversed_temp_stack.pop();
-						}
+//						for (int i = 0; i < reversed_temp_stack.size(); i++)
+//						{
+//							cout << endl << "TS: " << reversed_temp_stack.top().get_id();
+//							reversed_temp_stack.pop();
+//						}
 
 						in_the_network[i].get_packets_path().set_vertices(reversed_temp_stack);
 
@@ -341,12 +341,15 @@ void network::driver(string filename)
 						cout << endl << endl << "*****END DISTS*****" << endl;
 						*/
 
+						
+						reversed_temp_stack.pop();
 						temp_vertex = reversed_temp_stack.top();
+						
 						in_the_network[i].get_packets_path().set_vertices(reversed_temp_stack);
-						while (!reversed_temp_stack.empty())
-						{
-							reversed_temp_stack.pop();
-						}
+						//while (!reversed_temp_stack.empty())
+						//{
+						//	reversed_temp_stack.pop();
+						//}
 
 						// Determine next intermediary node
 						// Check path?
@@ -363,10 +366,6 @@ void network::driver(string filename)
 						// push onto queue?
 						in_the_network[i].set_current_wait(in_the_network[i].get_next_hop()->getPathWeight() * in_the_network[i].get_next_hop()->get_load_factor());
 
-						// Queue the packets arrival at the proper time
-						// push onto queue?
-// Crashes				in_the_network[i].set_current_wait((in_the_network[i].get_previous_location()->get_edges().at(in_the_network[i].get_next_hop())) * in_the_network[i].get_next_hop()->get_load_factor());
-
 						// Increase the load factor of each node that communicated this tick
 						// Update source load factor
 						in_the_network[i].get_previous_location()->set_load_factor(in_the_network[i].get_previous_location()->get_load_factor() + 1);
@@ -379,6 +378,10 @@ void network::driver(string filename)
 						cout << "PreLF: " << in_the_network[i].get_previous_location()->get_load_factor() << endl;
 						cout << "NexLF: " << in_the_network[i].get_next_hop()->get_load_factor() << endl;
 						*/
+
+						// prints adams style info
+						cout << "Sending packet " << in_the_network[i].get_value() << " to vertex " << in_the_network[i]._next_hop->get_id()
+							<< " with a wait of " << in_the_network[i].get_current_wait() << " at time " << ticker << endl;
 					}
 
 					//cout << in_the_network[i].get_destination()->get_id() << " " << ending_vertex << endl;
@@ -388,7 +391,7 @@ void network::driver(string filename)
 					{
 						// push this packet to completed packets
 						completed_packets.push_back(in_the_network[i]);
-						completed_packets.front().set_arrival_time(ticker);
+						completed_packets.back().set_arrival_time(ticker);
 						//need to set route here as well once its know
 						
 						in_the_network.erase(in_the_network.begin()+i);

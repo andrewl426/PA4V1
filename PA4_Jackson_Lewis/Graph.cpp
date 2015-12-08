@@ -70,18 +70,18 @@ stack<vertex> graph::computeShortestPath(vertex start , int starting_vertex, int
 	//underlying heap
 	priority_queue<vertex, vector<vertex>, PathWeightComparer> dijkstra_queue{};
 
-cout << endl << "*****STA DIJKSTRAS*****" << endl;
+//cout << endl << "*****STA DIJKSTRAS*****" << endl;
 
 	//reset start's path weight
 	start.set_path_weight(0);
-cout << endl << "start.path_weight: " << start.getPathWeight();
+//cout << endl << "start.path_weight: " << start.getPathWeight();
 
 	//make sure that the starting vertex is in the graph
 	if (_vertices.find(start.get_id()) != _vertices.end())
 	{
 		//push on starting vertex
 		dijkstra_queue.push(start);
-cout << endl << "Push on start(id): " << start.get_id();
+//cout << endl << "Push on start(id): " << start.get_id();
 
 
 		//while queue not empty
@@ -102,13 +102,13 @@ cout << endl << "Push on start(id): " << start.get_id();
 				distances[top] = current_path_weight;
 				if (top.get_id() == ending_vertex)
 				{
-					cout << endl << endl << "*****END DIJKSTRAS*****" << endl << endl;
+//cout << endl << endl << "*****END DIJKSTRAS*****" << endl << endl;
 					return temp_stack;
 				}
 				
-cout << endl << endl << "vertex top(id): " << top.get_id();
-cout << endl << "vertex top(PW): " << top.getPathWeight();
-cout << endl << "vertex top(LF): " << top.get_load_factor();
+//cout << endl << endl << "vertex top(id): " << top.get_id();
+//cout << endl << "vertex top(PW): " << top.getPathWeight();
+//cout << endl << "vertex top(LF): " << top.get_load_factor();
 
 				//push on outgoing edges
 				for (auto item : top.get_edges())
@@ -128,14 +128,14 @@ cout << endl << "vertex top(LF): " << top.get_load_factor();
 			}
 		}
 	}
-	cout << endl << endl << "*****END DIJKSTRAS*****" << endl << endl;
+//cout << endl << endl << "*****END DIJKSTRAS*****" << endl << endl;
 
 	// Print all of stack...
-	for (int i = 0; i < temp_stack.size(); i++)
-	{
-		cout << endl << "TS: " << temp_stack.top().get_id();
-		temp_stack.pop();
-	}
+//	for (int i = 0; i < temp_stack.size(); i++)
+//	{
+//		cout << endl << "TS: " << temp_stack.top().get_id();
+//		temp_stack.pop();
+//	}
 
 	/*cout << "*****DISTANCES*****" << endl << endl;
 	cout << "Path";
