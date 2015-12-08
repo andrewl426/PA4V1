@@ -248,12 +248,25 @@ void network::driver(string filename)
 					{
 						// Schedule another transmission
 						// Compute the shortest route
-// CRASHES				distances = _graph.computeShortestPath(in_the_network[i].get_previous_location());
+						// Compute the shortest route
+						distances = _graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
 
-						for (auto j : distances) // changed to j in case the i loop within an i loop was casuing issues.
+						// PRINT DIJKSTRA RESULTS
+						cout << "*****DISTANCES*****" << endl << endl;
+						cout << "Path";
+						for (auto i : distances)
 						{
-							//cout << endl << "J.first.get_id(): " << j.first.get_id() << " J.second: " << j.second;
+							cout << " -> V" << i.first.get_id() << ", W" << i.second;
 						}
+						cout << endl << endl << "Distance to dest: ";
+						for (auto i : distances)
+						{
+							if (i.first.get_id() == ending_vertex)
+							{
+								cout << " -> V" << i.first.get_id() << ", W" << i.second;
+							}
+						}
+						cout << endl << endl << "*****END DISTS*****" << endl;
 
 						// Determine next intermediary node
 						// Check path?
