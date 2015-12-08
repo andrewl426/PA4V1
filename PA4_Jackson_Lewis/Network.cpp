@@ -69,21 +69,23 @@ void network::driver(string filename)
 	file_processor(filename);
 
 	// Get info from user
+	cout << endl << "*****USER INPUT*****" << endl << endl;
 	cout << "Enter a message to send: ";
-	getline(cin, message_text); // Eat newline
-	cin.clear(); // clear buffer
-	fflush(stdin); // clear buffer
-	getline(cin, message_text); // Get users msg
-	cout << endl;
-
+	// Eat newline
+	getline(cin, message_text);
+	// clear buffer
+	cin.clear();
+	fflush(stdin); 
+	// Get users msg
+	getline(cin, message_text);
+	// Get starting vert
 	cout << "Enter a starting vertex: ";
 	cin >> starting_vertex;
-	cout << endl;
-
+	// Get ending vert
 	cout << "Enter a destination vertex: ";
 	cin >> ending_vertex;
 	
-	// If the vertices are valid
+	// If the vertices are valid set message items start and end verts
 	if (_graph.get_vertices().count(starting_vertex) && _graph.get_vertices().count(ending_vertex))
 	{
 		// Init message_item with starting and ending vertex
@@ -92,7 +94,7 @@ void network::driver(string filename)
 	}
 
 	// Turn message into message item full of packets
-	cout << endl << "*****PACKET SUMMARY*****" << endl;
+	cout << endl << "*****PACKET SUMMARY*****" << endl << endl;
 	for (auto i : message_text)
 	{
 		// Set packets char
@@ -116,7 +118,7 @@ void network::driver(string filename)
 		message_item.add_packet(temp_packet);
 
 		// Print full packet info
-		cout << "___PACKET___" << endl << "Val: " << temp_packet.get_value() << endl << "Ord: " << temp_packet.get_order() << endl
+		cout << "_PACKET_" << endl << "Val: " << temp_packet.get_value() << endl << "Ord: " << temp_packet.get_order() << endl
 			<< "Wai: " << temp_packet.get_current_wait() << endl << "Pre: " << temp_packet.get_previous_location()->get_id() << endl 
 			<< "Nex: " << temp_packet.get_next_hop()->get_id() << endl << "Des: " << temp_packet.get_destination()->get_id() << endl << endl;
 
@@ -139,7 +141,8 @@ void network::driver(string filename)
 			// If msg has more packets to send, queue the next packet for transmission at the starting location
 			if (!message_item.get_packets().empty())
 			{
-				temp_packet.set_current_wait(temp_packet.get_current_wait()	* temp_packet.get_next_hop()->getPathWeight()); //trying to update current wait
+				//temp_packet.set_current_wait(temp_packet.get_current_wait()	* temp_packet.get_next_hop()->getPathWeight()); //trying to update current wait
+				temp_packet.set_current_wait(temp_packet.get_next_hop()->getPathWeight() * temp_packet.get_next_hop()->get_load_factor()); // New set wait...
 
 				cout << "Sending packet " << message_item._packets.front().get_value() << " to vertex " << message_item.get_ending_vertex().get_id() 
 					<< " with a wait of " << message_item._packets.front().get_current_wait()+ ticker << " at time " << ticker << endl;
