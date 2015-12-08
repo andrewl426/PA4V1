@@ -161,7 +161,6 @@ void network::driver(string filename)
 					{
 						temp_vertex = i.first;
 					}
-					//cout << endl << "I.first.get_id(): " << i.first.get_id() << " I.second: " << i.second;
 					temp_packet.get_packets_path().push_vertex(i.first);
 					k++;
 				}
@@ -170,17 +169,12 @@ void network::driver(string filename)
 				  // Check path?
 				temp_packet = message_item.pop_packet();
 
-				//TEMPORARILY SETTING NEXT HOP TO DESTINATION!
-				//temp_packet.set_next_hop(_graph.get_vertices().at(ending_vertex));
-				//temp_packet.set_next_hop(temp_vertex);
-				//temp_packet.set_previous_location(*temp_packet.get_next_hop());
-				//temp_packet.set_next_hop(temp_packet.get_packets_path().pop_vertex());
-				temp_packet.set_previous_location(_graph.get_vertices().at(temp_packet.get_next_hop()->get_id()));
+				temp_packet.set_previous_location(_graph.get_vertices().at(temp_packet.get_next_hop()->get_id()));//initializiing temp packet
 				temp_packet.set_next_hop(_graph.get_vertices().at(temp_vertex.get_id()));
 
 				// Queue the packets arrival at the proper time
 				  // push onto queue?
-				//temp_packet.set_current_wait( (temp_packet.get_previous_location()->get_edges().at(temp_packet.get_next_hop())) * temp_packet.get_next_hop()->get_load_factor());
+				temp_packet.set_current_wait( (temp_packet.get_previous_location()->get_edges().at(temp_packet.get_next_hop())) * temp_packet.get_next_hop()->get_load_factor());
 
 				// Increase the load factor of each node that communicated this tick
 				// Update source load factor
@@ -198,7 +192,6 @@ void network::driver(string filename)
 				in_the_network.push_back(temp_packet);
 			}
 
-			//system("PAUSE");
 
 			// For each packet in the network...			
 			for (int i = 0; i < in_the_network.size(); i++)
