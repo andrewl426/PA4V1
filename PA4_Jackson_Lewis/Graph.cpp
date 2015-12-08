@@ -62,7 +62,7 @@ unordered_map<vertex, int> graph::computeShortestPath(vertex start)
 	//underlying heap
 	priority_queue<vertex, vector<vertex>, PathWeightComparer> dijkstra_queue{};
 
-cout << endl << endl << "*****STA DIJKSTRAS*****";
+cout << endl << endl << "*****STA DIJKSTRAS*****" << endl;
 
 	//reset start's path weight
 	start.set_path_weight(0);
