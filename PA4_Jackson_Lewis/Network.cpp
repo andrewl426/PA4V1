@@ -182,7 +182,8 @@ void network::driver(string filename)
 				temp_packet.get_next_hop()->set_load_factor(temp_packet.get_next_hop()->get_load_factor()+1);
 
 				// Load factor out
-				cout << endl << "FIRST LOOP:  Pre: " << temp_packet.get_previous_location()->get_id() << " LoF: " << temp_packet.get_previous_location()->get_load_factor() << endl;
+				cout << endl << "FIRST LOOP:  Pre: " << temp_packet.get_previous_location()->get_id() << " LoF: " << temp_packet.get_previous_location()->get_load_factor();
+				cout << endl << "FIRST LOOP:  Nex: " << temp_packet.get_next_hop()->get_id() << " LoF: " << temp_packet.get_next_hop()->get_load_factor() << endl << endl;
 		
 			}
 
@@ -199,6 +200,9 @@ void network::driver(string filename)
 				// If time is <= 0, it arrived
 				if (in_the_network[i].get_current_wait() <= 0) // Not sure if this works
 				{
+//ANDREW LOOK HERE
+	//change logic to instead check if tick is the same as the calculated wait? Thus keeping the load factor like Adams.
+
 					// Decrement load factor source
 					// if the loadfactor is > 1
 					if (in_the_network[i].get_previous_location()->get_load_factor() > 1)
@@ -209,9 +213,6 @@ void network::driver(string filename)
 						cout << " LoF: " << in_the_network[i].get_next_hop()->get_load_factor() - 1;
 					}
 					
-		//ANDREW LOOK HERE
-					//change logic to instead check if tick is the same as the calculated wait? Thus keeping the load factor like Adams.
-
 					// Decrement load factor dest
 					// if the loadfactor is > 1
 					if (in_the_network[i].get_next_hop()->get_load_factor() > 1)
@@ -251,7 +252,8 @@ void network::driver(string filename)
 						in_the_network[i].get_next_hop()->set_load_factor(in_the_network[i].get_next_hop()->get_load_factor() + 1);
 
 						// Load factor out
-						cout << endl << "SECOND LOOP: Pre: " << in_the_network[i].get_previous_location()->get_id() << " LoF: " << in_the_network[i].get_previous_location()->get_load_factor() << endl;
+						cout << endl << "SECOND LOOP: Pre: " << in_the_network[i].get_previous_location()->get_id() << " LoF: " << in_the_network[i].get_previous_location()->get_load_factor();
+						cout << endl << "SECOND LOOP: Nex: " << temp_packet.get_next_hop()->get_id() << " LoF: " << temp_packet.get_next_hop()->get_load_factor() << endl << endl;
 					}
 
 					//cout << in_the_network[i].get_destination()->get_id() << " " << ending_vertex << endl;
