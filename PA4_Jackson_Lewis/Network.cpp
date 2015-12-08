@@ -173,7 +173,7 @@ void network::driver(string filename)
 				cout << endl << endl << "*****END DISTS*****" << endl;
 
 				// Grab the shortest path out of distances (ie. the next_hop)
-				int k = 0;
+		/*		int k = 0;
 				for (auto i : distances)
 				{
 					if (k == 0)
@@ -182,8 +182,15 @@ void network::driver(string filename)
 					}
 					temp_packet.get_packets_path().push_vertex(i.first);
 					k++;
-				}
+				}*/
 
+				temp_vertex = temp_stack.top();
+				temp_packet.get_packets_path().set_vertices(temp_stack);
+				while (!temp_stack.empty())
+				{
+					temp_stack.pop();
+				}
+				
 				// Determine next intermediary node
 				  // Check path?
 				temp_packet = message_item.pop_packet();
