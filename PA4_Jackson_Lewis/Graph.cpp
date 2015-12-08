@@ -54,20 +54,24 @@ unordered_map<vertex, int> graph::computeShortestPath(vertex start)
 
 		(weight = vertex.getWeight() * vertext.getLoadFactor()).
 	*/
-
+	
 	//holds known distances
 	unordered_map<vertex, int> distances;
 	//underlying heap
 	priority_queue<vertex, vector<vertex>, PathWeightComparer> dijkstra_queue{};
 
+cout << endl << endl << "*****STA DIJKSTRAS*****";
+
 	//reset start's path weight
 	start.set_path_weight(0);
+cout << endl << "start.path_weight: " << start.getPathWeight();
 
 	//make sure that the starting vertex is in the graph
 	if (_vertices.find(start.get_id()) != _vertices.end())
 	{
 		//push on starting vertex
 		dijkstra_queue.push(start);
+cout << endl << "Push on start(id): " << start.get_id();
 
 		//while queue not empty
 		while (dijkstra_queue.empty() == false)
@@ -86,6 +90,10 @@ unordered_map<vertex, int> graph::computeShortestPath(vertex start)
 				//cout << "Current path weight: " << current_path_weight << endl;
 				distances[top] = current_path_weight;
 
+cout << endl << endl << "vertex top(id): " << top.get_id();
+cout << endl << "vertex top(PW): " << top.getPathWeight();
+cout << endl << "vertex top(LF): " << top.get_load_factor();
+
 				//push on outgoing edges
 				for (auto item : top.get_edges())
 				{
@@ -102,8 +110,8 @@ unordered_map<vertex, int> graph::computeShortestPath(vertex start)
 				}
 			}
 		}
-
-
 	}
+	cout << endl << endl << "*****END DIJKSTRAS*****" << endl;
+
 	return distances;
 }
