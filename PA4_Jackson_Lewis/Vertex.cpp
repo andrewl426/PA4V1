@@ -6,11 +6,13 @@ vertex::vertex()
 {
 	_id = 0;
 	//_edges = empty!
-	_load_factor = 0;
+	_load_factor = 1;
 	_path_weight = 0;
 }
 vertex::vertex(int new_id, unordered_map<vertex*, int> new_edges, int new_load_factor)
 {
+	_load_factor = 1;
+
 	_id = new_id;
 	_edges = new_edges;
 	_load_factor = new_load_factor;
