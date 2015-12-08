@@ -203,7 +203,10 @@ void network::driver(string filename)
 					// if the loadfactor is > 1
 					if (in_the_network[i].get_previous_location()->get_load_factor() > 1)
 					{
+						cout << "ENTERED IF LOAD FACTOR PRE..";
 						in_the_network[i].get_previous_location()->set_load_factor(in_the_network[i].get_previous_location()->get_load_factor() - 1);
+
+						cout << " LoF: " << in_the_network[i].get_next_hop()->get_load_factor() - 1;
 					}
 					
 		//ANDREW LOOK HERE
@@ -213,7 +216,10 @@ void network::driver(string filename)
 					// if the loadfactor is > 1
 					if (in_the_network[i].get_next_hop()->get_load_factor() > 1)
 					{
+						cout << "ENTERED IF LOAD FACTOR NEX..";
 						in_the_network[i].get_next_hop()->set_load_factor(in_the_network[i].get_next_hop()->get_load_factor() - 1);
+
+						cout << " LoF: " << in_the_network[i].get_next_hop()->get_load_factor() - 1;
 					}
 
 					// If packet has not reached final dest, schedule another transmission using the first loop (Alter nodes transmitting packet)
@@ -245,7 +251,7 @@ void network::driver(string filename)
 						in_the_network[i].get_next_hop()->set_load_factor(in_the_network[i].get_next_hop()->get_load_factor() + 1);
 
 						// Load factor out
-						cout << endl << "SECOND LOOP: Pre: " << temp_packet.get_previous_location()->get_id() << " LoF: " << temp_packet.get_previous_location()->get_load_factor() << endl;
+						cout << endl << "SECOND LOOP: Pre: " << in_the_network[i].get_previous_location()->get_id() << " LoF: " << in_the_network[i].get_previous_location()->get_load_factor() << endl;
 					}
 
 					//cout << in_the_network[i].get_destination()->get_id() << " " << ending_vertex << endl;
