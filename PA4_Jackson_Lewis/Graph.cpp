@@ -104,6 +104,8 @@ cout << endl << "vertex top(LF): " << top.get_load_factor();
 					vertex *next = item.first;
 					int weight = item.second * top.get_load_factor();
 
+					cout << endl << endl << "Weight = " << item.second << " * " << top.get_load_factor() << endl << endl;
+
 					next->set_path_weight(weight + current_path_weight);
 
 					//not known?  add to heap
