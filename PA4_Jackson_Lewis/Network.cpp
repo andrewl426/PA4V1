@@ -173,6 +173,8 @@ void network::driver(string filename)
 				//TEMPORARILY SETTING NEXT HOP TO DESTINATION!
 				//temp_packet.set_next_hop(_graph.get_vertices().at(ending_vertex));
 				temp_packet.set_next_hop(temp_vertex);
+				//temp_packet.set_previous_location(*temp_packet.get_next_hop());
+				//temp_packet.set_next_hop(temp_packet.get_packets_path().pop_vertex());
 
 				// Queue the packets arrival at the proper time
 				  // push onto queue?
