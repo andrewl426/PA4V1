@@ -233,7 +233,7 @@ void network::driver(string filename)
 
 						// Queue the packets arrival at the proper time
 						// push onto queue?
-// CRASHES				temp_packet.set_current_wait((temp_packet.get_previous_location()->get_edges().at(temp_packet.get_next_hop())) * temp_packet.get_next_hop()->get_load_factor()); // TEMPORARY INCORRECT HARDCODE
+// Crashes				in_the_network[i].set_current_wait((in_the_network[i].get_previous_location()->get_edges().at(in_the_network[i].get_next_hop())) * in_the_network[i].get_next_hop()->get_load_factor());
 
 						// Increase the load factor of each node that communicated this tick
 						// Update source load factor
