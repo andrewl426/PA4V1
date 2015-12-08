@@ -122,6 +122,7 @@ cout << endl << "vertex top(LF): " << top.get_load_factor();
 	}
 	cout << endl << endl << "*****END DIJKSTRAS*****" << endl << endl;
 
+	// Print all of stack...
 	for (int i = 0; i < temp_stack.size(); i++)
 	{
 		cout << endl << "TS: " << temp_stack.top().get_id();

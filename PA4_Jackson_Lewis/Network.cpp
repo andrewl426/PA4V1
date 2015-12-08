@@ -154,26 +154,18 @@ void network::driver(string filename)
 				// Compute the shortest route
 				temp_stack = _graph.computeShortestPath(_graph.get_vertices().at(starting_vertex), _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
 
-				temp_packet.get_packets_path().set_vertices(temp_stack);
-				// PRINT DIJKSTRA RESULTS
-				cout << "*****DISTANCES*****" << endl << endl;
-				cout << "Path";
-				for (auto i : distances)
+				// Print all of stack...
+				for (int i = 0; i < temp_stack.size(); i++)
 				{
-					cout << " -> V" << i.first.get_id() << ", W" << i.second;
+					cout << endl << "TS: " << temp_stack.top().get_id();
+					temp_stack.pop();
 				}
-				cout << endl << endl << "Distance to dest: ";
-				for (auto i : distances)
-				{
-					if (i.first.get_id() == ending_vertex)
-					{
-						cout << " -> V" << i.first.get_id() << ", W" << i.second;
-					}
-				}
-				cout << endl << endl << "*****END DISTS*****" << endl;
 
+				temp_packet.get_packets_path().set_vertices(temp_stack);
+				
 				// Grab the shortest path out of distances (ie. the next_hop)
-		/*		int k = 0;
+				/*		
+				int k = 0;
 				for (auto i : distances)
 				{
 					if (k == 0)
@@ -182,7 +174,28 @@ void network::driver(string filename)
 					}
 					temp_packet.get_packets_path().push_vertex(i.first);
 					k++;
-				}*/
+				}
+				
+				// Compute the shortest route
+				//distances = _graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
+				
+				// PRINT DIJKSTRA RESULTS
+						cout << "*****DISTANCES*****" << endl << endl;
+						cout << "Path";
+						for (auto i : distances)
+						{
+							cout << " -> V" << i.first.get_id() << ", W" << i.second;
+						}
+						cout << endl << endl << "Distance to dest: ";
+						for (auto i : distances)
+						{
+							if (i.first.get_id() == ending_vertex)
+							{
+								cout << " -> V" << i.first.get_id() << ", W" << i.second;
+							}
+						}
+						cout << endl << endl << "*****END DISTS*****" << endl;								
+				*/
 
 				temp_vertex = temp_stack.top();
 				temp_packet.get_packets_path().set_vertices(temp_stack);
@@ -257,25 +270,7 @@ void network::driver(string filename)
 					{
 						// Schedule another transmission
 						// Compute the shortest route
-						// Compute the shortest route
-						//distances = _graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
-
-						// PRINT DIJKSTRA RESULTS
-						cout << "*****DISTANCES*****" << endl << endl;
-						cout << "Path";
-						for (auto i : distances)
-						{
-							cout << " -> V" << i.first.get_id() << ", W" << i.second;
-						}
-						cout << endl << endl << "Distance to dest: ";
-						for (auto i : distances)
-						{
-							if (i.first.get_id() == ending_vertex)
-							{
-								cout << " -> V" << i.first.get_id() << ", W" << i.second;
-							}
-						}
-						cout << endl << endl << "*****END DISTS*****" << endl;
+												
 
 						// Determine next intermediary node
 						// Check path?
