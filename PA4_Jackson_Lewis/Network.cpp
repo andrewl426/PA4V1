@@ -153,8 +153,8 @@ void network::driver(string filename)
 				// Compute the shortest route
 				distances =_graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
 				
+				// Grab the shortest path out of distances (ie. the next_hop)
 				int k = 0;
-
 				for (auto i : distances)
 				{
 					if (k == 0)
