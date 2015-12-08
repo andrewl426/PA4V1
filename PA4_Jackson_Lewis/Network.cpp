@@ -180,6 +180,9 @@ void network::driver(string filename)
 				temp_packet.get_previous_location()->set_load_factor(temp_packet.get_previous_location()->get_load_factor()+1);
 				// Update dest load factor
 				temp_packet.get_next_hop()->set_load_factor(temp_packet.get_next_hop()->get_load_factor()+1);
+
+				// Load factor out
+				cout << endl << "FIRST LOOP:  Pre: " << temp_packet.get_previous_location()->get_id() << " LoF: " << temp_packet.get_previous_location()->get_load_factor() << endl;
 		
 			}
 
@@ -208,7 +211,7 @@ void network::driver(string filename)
 
 					// Decrement load factor dest
 					// if the loadfactor is > 1
-					if (in_the_network[i].get_next_hop()->get_load_factor())
+					if (in_the_network[i].get_next_hop()->get_load_factor() > 1)
 					{
 						in_the_network[i].get_next_hop()->set_load_factor(in_the_network[i].get_next_hop()->get_load_factor() - 1);
 					}
@@ -240,6 +243,9 @@ void network::driver(string filename)
 						in_the_network[i].get_previous_location()->set_load_factor(in_the_network[i].get_previous_location()->get_load_factor() + 1);
 						// Update dest load factor
 						in_the_network[i].get_next_hop()->set_load_factor(in_the_network[i].get_next_hop()->get_load_factor() + 1);
+
+						// Load factor out
+						cout << endl << "SECOND LOOP: Pre: " << temp_packet.get_previous_location()->get_id() << " LoF: " << temp_packet.get_previous_location()->get_load_factor() << endl;
 					}
 
 					//cout << in_the_network[i].get_destination()->get_id() << " " << ending_vertex << endl;
