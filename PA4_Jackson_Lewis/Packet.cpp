@@ -39,6 +39,10 @@ const char packet::get_value()
 {
 	return _value;
 }
+const int packet::get_arrival_time()
+{
+	return _arrival_time;
+}
 const int packet::get_order()
 {
 	return _order;
@@ -68,6 +72,10 @@ path packet::get_packets_path()
 void packet::set_value(int new_value)
 {
 	_value = new_value;
+}
+void packet::set_arrival_time(int new_time)
+{
+	_arrival_time = new_time;
 }
 void packet::set_order(int new_order)
 {

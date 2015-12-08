@@ -267,7 +267,9 @@ void network::driver(string filename)
 					{
 						// push this packet to completed packets
 						completed_packets.push_back(in_the_network[i]);
-						//in_the_network.pop_back(); // I'm not sure, but i believe that what is popped and what is pushed should be the same. The idea is to push the completed node onto completed, and pop it from in the network...
+						completed_packets.front().set_arrival_time(ticker);
+						//need to set route here as well once its know
+						
 						in_the_network.erase(in_the_network.begin()+i);
 						in_the_network.shrink_to_fit();
 					}
@@ -276,6 +278,24 @@ void network::driver(string filename)
 			ticker++;
 		}
 	}
+
+	print_arrivals(); //print what happened during the simulation
+}
+
+void network::print_arrivals()
+{
+	cout << "Packet     Arrival Time     Route" << endl;
+	for (auto i : completed_packets)
+	{
+		cout << i.get_value() << "          " << i.get_arrival_time() << "          Path coming soon" << endl;
+		/*for (auto j : i._packets_path._vertices) this will be route soon
+		{
+
+		}*/
+
+	}
+
+
 }
 
 void network::file_processor(string filename)
