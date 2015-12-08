@@ -204,17 +204,17 @@ void network::driver(string filename)
 				// If time is <= 0, it arrived
 				if (in_the_network[i].get_current_wait() <= 0) // Not sure if this works
 				{
-//ANDREW LOOK HERE
-	//change logic to instead check if tick is the same as the calculated wait? Thus keeping the load factor like Adams.
+
 
 					// Decrement load factor source
 					// if the loadfactor is > 1
 					if (in_the_network[i].get_previous_location()->get_load_factor() > 1)
 					{
 						cout << "ENTERED IF LOAD FACTOR PRE..";
-						in_the_network[i].get_previous_location()->set_load_factor(in_the_network[i].get_previous_location()->get_load_factor() - 1);
+						in_the_network.at(i).get_previous_location()->set_load_factor(in_the_network.at(i).get_next_hop()->get_load_factor() - 1);
+						//in_the_network[i].get_previous_location()->set_load_factor(in_the_network[i].get_previous_location()->get_load_factor() - 1);
 
-						cout << " LoF: " << in_the_network[i].get_next_hop()->get_load_factor() - 1;
+						cout << " LoF: " << in_the_network[i].get_previous_location()->get_load_factor() << " ";
 					}
 					
 					// Decrement load factor dest
@@ -222,9 +222,10 @@ void network::driver(string filename)
 					if (in_the_network[i].get_next_hop()->get_load_factor() > 1)
 					{
 						cout << "ENTERED IF LOAD FACTOR NEX..";
-						in_the_network[i].get_next_hop()->set_load_factor(in_the_network[i].get_next_hop()->get_load_factor() - 1);
+						//in_the_network[i].get_next_hop()->set_load_factor(in_the_network[i].get_next_hop()->get_load_factor() - 1);
+						in_the_network.at(i).get_next_hop()->set_load_factor(in_the_network.at(i).get_next_hop()->get_load_factor() - 1);
 
-						cout << " LoF: " << in_the_network[i].get_next_hop()->get_load_factor() - 1 << " ";
+						cout << " LoF: " << in_the_network[i].get_next_hop()->get_load_factor() << " ";
 					}
 
 					// If packet has not reached final dest, schedule another transmission using the first loop (Alter nodes transmitting packet)
