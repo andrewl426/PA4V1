@@ -121,6 +121,12 @@ cout << endl << "vertex top(LF): " << top.get_load_factor();
 	}
 	cout << endl << endl << "*****END DIJKSTRAS*****" << endl << endl;
 
+	for (int i = 0; i < temp_stack.size(); i++)
+	{
+		cout << endl << "TS: " << temp_stack.top().get_id();
+		temp_stack.pop();
+	}
+
 	/*cout << "*****DISTANCES*****" << endl << endl;
 	cout << "Path";
 	for (auto i : distances)
