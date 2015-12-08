@@ -1,3 +1,10 @@
+     //*////////////////////////////////////////*//
+    //*//      PA4 - Networking Project      //*//
+   //*//								    //*//
+  //*//     Andrew Lewis - 113 760 25      //*//
+ //*//     Justin Jackon - 114 377 51     //*//
+//*////////////////////////////////////////*//
+
 // Includes
 #include "Network.h"
 
@@ -65,6 +72,7 @@ void network::driver(string filename)
 	unordered_map<vertex, int> distances;
 	vertex temp_vertex;
 	stack<vertex> temp_stack;
+	stack<vertex> reversed_temp_stack;
 
 	// Run file processor
 	file_processor(filename);
@@ -153,15 +161,22 @@ void network::driver(string filename)
 
 				// Compute the shortest route
 				temp_stack = _graph.computeShortestPath(_graph.get_vertices().at(starting_vertex), _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
-
-				// Print all of stack...
-				for (int i = 0; i < temp_stack.size(); i++)
+				
+				// Reverse stack
+				while (!temp_stack.empty())
 				{
-					cout << endl << "TS: " << temp_stack.top().get_id();
+					reversed_temp_stack.push(temp_stack.top());
 					temp_stack.pop();
 				}
 
-				temp_packet.get_packets_path().set_vertices(temp_stack);
+				// Print all of stack...
+				for (int i = 0; i < reversed_temp_stack.size(); i++)
+				{
+					cout << endl << "TS: " << reversed_temp_stack.top().get_id();
+					reversed_temp_stack.pop();
+				}
+
+				temp_packet.get_packets_path().set_vertices(reversed_temp_stack);
 				
 				// Grab the shortest path out of distances (ie. the next_hop)
 				/*		
@@ -197,11 +212,11 @@ void network::driver(string filename)
 						cout << endl << endl << "*****END DISTS*****" << endl;								
 				*/
 
-				temp_vertex = temp_stack.top();
-				temp_packet.get_packets_path().set_vertices(temp_stack);
-				while (!temp_stack.empty())
+				temp_vertex = reversed_temp_stack.top();
+				temp_packet.get_packets_path().set_vertices(reversed_temp_stack);
+				while (!reversed_temp_stack.empty())
 				{
-					temp_stack.pop();
+					reversed_temp_stack.pop();
 				}
 				
 				// Determine next intermediary node
@@ -223,10 +238,12 @@ void network::driver(string filename)
 				temp_packet.get_next_hop()->set_load_factor(temp_packet.get_next_hop()->get_load_factor()+1);
 
 				// Load factor out
-				// Print load factor info...
+				// Print load factor info... 
+				/*
 				cout << endl << "Load Factor: First Loop" << endl;
 				cout << "PreLF: " << temp_packet.get_previous_location()->get_load_factor() << endl;
 				cout << "NexLF: " << temp_packet.get_next_hop()->get_load_factor() << endl;
+				*/
 		
 				// Push temp_packet into the network vector
 				in_the_network.push_back(temp_packet);
@@ -261,22 +278,90 @@ void network::driver(string filename)
 					}
 
 					// Print load factor info...
+					/*
 					cout << endl << "Load Factor: Decrement" << endl;
 					cout << "PreLF: " << in_the_network[i].get_previous_location()->get_load_factor() << endl;
 					cout << "NexLF: " << in_the_network[i].get_next_hop()->get_load_factor() << endl;
+					*/
 					
 					// If packet has not reached final dest, schedule another transmission using the first loop (Alter nodes transmitting packet)
-					if (in_the_network[i].get_destination()->get_id() == ending_vertex)
+					if (in_the_network[i].get_previous_location()->get_id() != ending_vertex)
 					{
 						// Schedule another transmission
 						// Compute the shortest route
-												
+						temp_stack = _graph.computeShortestPath(_graph.get_vertices().at(starting_vertex), _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
+
+						// Reverse stack
+						while (!temp_stack.empty())
+						{
+							reversed_temp_stack.push(temp_stack.top());
+							temp_stack.pop();
+						}
+
+						// Print all of stack...
+						for (int i = 0; i < reversed_temp_stack.size(); i++)
+						{
+							cout << endl << "TS: " << reversed_temp_stack.top().get_id();
+							reversed_temp_stack.pop();
+						}
+
+						in_the_network[i].get_packets_path().set_vertices(reversed_temp_stack);
+
+						// Grab the shortest path out of distances (ie. the next_hop)
+						/*
+						int k = 0;
+						for (auto i : distances)
+						{
+						if (k == 0)
+						{
+						temp_vertex = i.first;
+						}
+						temp_packet.get_packets_path().push_vertex(i.first);
+						k++;
+						}
+
+						// Compute the shortest route
+						//distances = _graph.computeShortestPath(_graph.get_vertices().at(starting_vertex));
+
+						// PRINT DIJKSTRA RESULTS
+						cout << "*****DISTANCES*****" << endl << endl;
+						cout << "Path";
+						for (auto i : distances)
+						{
+						cout << " -> V" << i.first.get_id() << ", W" << i.second;
+						}
+						cout << endl << endl << "Distance to dest: ";
+						for (auto i : distances)
+						{
+						if (i.first.get_id() == ending_vertex)
+						{
+						cout << " -> V" << i.first.get_id() << ", W" << i.second;
+						}
+						}
+						cout << endl << endl << "*****END DISTS*****" << endl;
+						*/
+
+						temp_vertex = reversed_temp_stack.top();
+						in_the_network[i].get_packets_path().set_vertices(reversed_temp_stack);
+						while (!reversed_temp_stack.empty())
+						{
+							reversed_temp_stack.pop();
+						}
 
 						// Determine next intermediary node
 						// Check path?
+						if (!message_item.get_packets().empty())
+						{
+							in_the_network[i] = message_item.pop_packet();
+						}
 
-						//TEMPORARILY SETTING NEXT HOP TO DESTINATION!
-						in_the_network[i].set_next_hop(_graph.get_vertices().at(ending_vertex));
+						in_the_network[i].set_previous_location(_graph.get_vertices().at(in_the_network[i].get_next_hop()->get_id()));//initializiing temp packet
+						in_the_network[i].set_next_hop(_graph.get_vertices().at(temp_vertex.get_id()));
+						//temp_packet.get_previous_location()->set_edges();
+
+						// Queue the packets arrival at the proper time
+						// push onto queue?
+						in_the_network[i].set_current_wait(in_the_network[i].get_next_hop()->getPathWeight() * in_the_network[i].get_next_hop()->get_load_factor());
 
 						// Queue the packets arrival at the proper time
 						// push onto queue?
@@ -289,9 +374,11 @@ void network::driver(string filename)
 						in_the_network[i].get_next_hop()->set_load_factor(in_the_network[i].get_next_hop()->get_load_factor() + 1);
 
 						// Print load factor info...
+						/*
 						cout << endl << "Load Factor: Second Loop" << endl;
 						cout << "PreLF: " << in_the_network[i].get_previous_location()->get_load_factor() << endl;
 						cout << "NexLF: " << in_the_network[i].get_next_hop()->get_load_factor() << endl;
+						*/
 					}
 
 					//cout << in_the_network[i].get_destination()->get_id() << " " << ending_vertex << endl;
@@ -318,7 +405,7 @@ void network::driver(string filename)
 
 void network::print_arrivals()
 {
-	cout << "Packet     Arrival Time     Route" << endl;
+	cout << endl << endl << "Packet     Arrival Time     Route" << endl;
 	for (auto i : completed_packets)
 	{
 		cout << i.get_value() << "          " << i.get_arrival_time() << "          Path coming soon" << endl;
@@ -326,10 +413,7 @@ void network::print_arrivals()
 		{
 
 		}*/
-
 	}
-
-
 }
 
 void network::file_processor(string filename)

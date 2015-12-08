@@ -1,3 +1,10 @@
+     //*////////////////////////////////////////*//
+    //*//      PA4 - Networking Project      //*//
+   //*//								    //*//
+  //*//     Andrew Lewis - 113 760 25      //*//
+ //*//     Justin Jackon - 114 377 51     //*//
+//*////////////////////////////////////////*//
+
 // Includes
 #include "Graph.h"
 
@@ -95,6 +102,7 @@ cout << endl << "Push on start(id): " << start.get_id();
 				distances[top] = current_path_weight;
 				if (top.get_id() == ending_vertex)
 				{
+					cout << endl << endl << "*****END DIJKSTRAS*****" << endl << endl;
 					return temp_stack;
 				}
 				
