@@ -57,7 +57,9 @@ unordered_map<vertex, int> graph::computeShortestPath(vertex start)
 	
 	//holds known distances
 	unordered_map<vertex, int> distances;
-
+	unordered_map<vertex, stack<vertex>> routes;
+	stack<vertex> temp_stack;
+	
 	path for_the_stack;
 	//underlying heap
 	priority_queue<vertex, vector<vertex>, PathWeightComparer> dijkstra_queue{};
@@ -73,8 +75,9 @@ cout << endl << "start.path_weight: " << start.getPathWeight();
 	{
 		//push on starting vertex
 		dijkstra_queue.push(start);
-		//for_the_stack.push_vertex(start); //testing
+		temp_stack.push(start);//PUSH onto temp stack
 cout << endl << "Push on start(id): " << start.get_id();
+
 
 		//while queue not empty
 		while (dijkstra_queue.empty() == false)
@@ -82,12 +85,12 @@ cout << endl << "Push on start(id): " << start.get_id();
 			//push on outgoing edges that haven't been discovered
 			vertex top = dijkstra_queue.top();
 			dijkstra_queue.pop();
-			//for_the_stack.pop_vertex(); //testing
+			temp_stack.push(top); //PUSH where we went
 
 			//Top of heap not known (in distances)?
 			if (distances.find(top) == distances.end())
 			{
-
+				routes[top] = (temp_stack); //IN theory this is our route
 				//cout << top.get_load_factor() << endl;
 				//make known
 				int current_path_weight = top.getPathWeight() * top.get_load_factor();
@@ -111,7 +114,6 @@ cout << endl << "vertex top(LF): " << top.get_load_factor();
 					if (distances.find(*next) == distances.end())
 					{
 						dijkstra_queue.push(*next);
-						//for_the_stack.push_vertex(top);
 					}
 				}
 			}
