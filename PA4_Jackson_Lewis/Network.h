@@ -41,7 +41,7 @@ public:
 	void driver(string filename);
 	void file_processor(string filename);
 	vector<string> string_parser(string tobeparsed);
-
+	void print_arrivals();
 
 private:
 };
