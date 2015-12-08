@@ -116,7 +116,14 @@ cout << endl << "vertex top(LF): " << top.get_load_factor();
 			}
 		}
 	}
-	cout << endl << endl << "*****END DIJKSTRAS*****" << endl;
+	cout << endl << endl << "*****END DIJKSTRAS*****" << endl << endl;
+
+	cout << endl << endl << "*****DISTANCES*****" << endl;
+	for (auto i : distances)
+	{
+		cout << " -> V" << i.first.get_id() << ", W" << i.second;
+	}
+	cout << endl << endl << "*****END DISTS*****" << endl;
 
 	return distances;
 }

@@ -1,3 +1,10 @@
+     //*////////////////////////////////////////*//
+    //*//      PA4 - Networking Project      //*//
+   //*//								    //*//
+  //*//     Andrew Lewis - 113 760 25      //*//
+ //*//     Justin Jackon - 114 377 51     //*//
+//*////////////////////////////////////////*//
+
 // ANDREW; I think we should use main only to open and close files, and to create the network--- I think all real logic should be handled inside of networks tick()
 //			also, is an output file required? I cant find anything about it in the PA 4 pdf...
 //Justin: I don't think an outlook file is required. Since we are already doing cout.. adding fout might be work it.
