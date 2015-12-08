@@ -14,6 +14,7 @@ public:
 	char _value = '\0';
 	int _order = 0;
 	int _current_wait = 0;
+	int _arrival_time = 0;
 	vertex* _destination;
 	vertex* _previous_location;
 	vertex* _next_hop;
@@ -30,6 +31,7 @@ public:
 
 	// Getters
 	const char get_value();
+	const int get_arrival_time();
 	const int get_order();
 	const int get_current_wait();
 	vertex* get_destination();
@@ -39,6 +41,7 @@ public:
 
 	// Setters
 	void set_value(int new_value);
+	void set_arrival_time(int new_time);
 	void set_order(int new_order);
 	void set_current_wait(int new_current_wait);
 	void set_destination(vertex new_destination);
