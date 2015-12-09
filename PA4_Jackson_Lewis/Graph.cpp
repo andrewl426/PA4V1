@@ -49,7 +49,7 @@ void graph::set_vertices(unordered_map<int, vertex> new_vertices)
 }
 
 // Methods
-unordered_map<vertex, path> graph::computeShortestPath(vertex *start , int starting_vertex, int ending_vertex)
+unordered_map<vertex, path> graph::computeShortestPath(vertex *start, int starting_vertex, int ending_vertex)
 {
 	/*a
 	A note on Dijkstra's Algorithm
@@ -59,9 +59,9 @@ unordered_map<vertex, path> graph::computeShortestPath(vertex *start , int start
 	to respond to any given message. To model this behavior, calculate an edge's weight to be
 	the product of the edge's unadjusted weight and the node's load factor;
 
-		(weight = vertex.getWeight() * vertext.getLoadFactor()).
+	(weight = vertex.getWeight() * vertext.getLoadFactor()).
 	*/
-	
+
 	//holds known distances
 	unordered_map<vertex, path> distances;
 
@@ -71,17 +71,17 @@ unordered_map<vertex, path> graph::computeShortestPath(vertex *start , int start
 	start->set_path_weight(0);
 	//reset path
 
-//cout << endl << "*****STA DIJKSTRAS*****" << endl;
+	//cout << endl << "*****STA DIJKSTRAS*****" << endl;
 
 	//reset start's path weight
-//cout << endl << "start.path_weight: " << start.getPathWeight();
+	//cout << endl << "start.path_weight: " << start.getPathWeight();
 
 	//make sure that the starting vertex is in the graph
 	if (_vertices.find(start->get_id()) != _vertices.end())
 	{
 		//push on starting vertex
 		dijkstra_queue.push(*start);
-//cout << endl << "Push on start(id): " << start.get_id();
+		//cout << endl << "Push on start(id): " << start.get_id();
 
 
 		//while queue not empty
@@ -97,65 +97,73 @@ unordered_map<vertex, path> graph::computeShortestPath(vertex *start , int start
 				//cout << top.get_load_factor() << endl;
 				//make known
 				int current_path_weight = top.getPathWeight();
-				path temp_path = top.;
+				path temp_path = top.get_vert_path();
+				temp_path.set_distance_traveled(current_path_weight);
+				temp_path.push_vertex(top);
+				top.set_vert_path(temp_path);
+				distances[top] = temp_path;
 
-				//cout << "Current path weight: " << current_path_weight << endl;
-				distances[top.get_vertices().top()] = current_path_weight;
-				if (top.get_vertices().top().get_id() == ending_vertex)
-				{
-//cout << endl << endl << "*****END DIJKSTRAS*****" << endl << endl;
-					return  dijkstra_queue.top();
-				}
-				
-//cout << endl << endl << "vertex top(id): " << top.get_id();
-//cout << endl << "vertex top(PW): " << top.getPathWeight();
-//cout << endl << "vertex top(LF): " << top.get_load_factor();
+
+				//				//cout << "Current path weight: " << current_path_weight << endl;
+				//				distances[top] = current_path_weight;
+				//				if (top.get_vertices().top().get_id() == ending_vertex)
+				//				{
+				////cout << endl << endl << "*****END DIJKSTRAS*****" << endl << endl;
+				//					return  dijkstra_queue.top();
+				//				}
+
+				//cout << endl << endl << "vertex top(id): " << top.get_id();
+				//cout << endl << "vertex top(PW): " << top.getPathWeight();
+				//cout << endl << "vertex top(LF): " << top.get_load_factor();
 
 				//push on outgoing edges
-				for (auto item : top.get_vertices().top().get_edges())
+				for (auto item : top.get_edges())
 				{
-					path next;
-						next._vertices.push(*item.first);
-					int weight = item.second * top.get_vertices().top().get_load_factor();
-// Prints the wight equation..	//cout << endl << "Weight = " << item.second << " * " << top.get_load_factor();
+					vertex *next = item.first;
+					path new_path = top.get_vert_path();
+					int weight = item.second * next->get_load_factor();
+					new_path.set_distance_traveled(weight + current_path_weight);
+					next->set_vert_path(new_path);
 
-					next.get_vertices().top().set_path_weight(weight + current_path_weight);
+
+					// Prints the wight equation..	//cout << endl << "Weight = " << item.second << " * " << top.get_load_factor();
+
 
 					//not known?  add to heap
-					if (distances.find(next._vertices.top()) == distances.end())
+					if (distances.find(*next) == distances.end())
 					{
-						dijkstra_queue.push(next);
+						dijkstra_queue.push(*next);
 					}
 				}
 			}
 		}
 	}
-//cout << endl << endl << "*****END DIJKSTRAS*****" << endl << endl;
+	//cout << endl << endl << "*****END DIJKSTRAS*****" << endl << endl;
 
 	// Print all of stack...
-//	for (int i = 0; i < temp_stack.size(); i++)
-//	{
-//		cout << endl << "TS: " << temp_stack.top().get_id();
-//		temp_stack.pop();
-//	}
+	//	for (int i = 0; i < temp_stack.size(); i++)
+	//	{
+	//		cout << endl << "TS: " << temp_stack.top().get_id();
+	//		temp_stack.pop();
+	//	}
 
 	/*cout << "*****DISTANCES*****" << endl << endl;
 	cout << "Path";
 	for (auto i : distances)
 	{
-		cout << " -> V" << i.first.get_id() << ", W" << i.second;
+	cout << " -> V" << i.first.get_id() << ", W" << i.second;
 	}
 	cout << endl << "Distance to dest: ";
 	for (auto i : distances)
 	{
-		if (i.first.get_id() == 1)
-		{
-			cout << " -> V" << i.first.get_id() << ", W" << i.second;
-		}
+	if (i.first.get_id() == 1)
+	{
+	cout << " -> V" << i.first.get_id() << ", W" << i.second;
+	}
 	}
 	cout << endl << endl << "*****END DISTS*****" << endl;*/
 
 
 
-	return dijkstra_queue.top();
+	return distances;
 }
