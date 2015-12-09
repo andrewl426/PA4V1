@@ -168,11 +168,11 @@ void network::driver(string filename)
 				temp_path = _graph.computeShortestPath(temp_path, _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
 				
 				// Reverse stack
-				while (!temp_stack.empty())
-				{
-					reversed_temp_stack.push(temp_stack.top());
-					temp_stack.pop();
-				}
+//				while (!temp_stack.empty())
+//				{
+//					reversed_temp_stack.push(temp_stack.top());
+//					temp_stack.pop();
+//				}
 
 				// Print all of stack...
 //				for (int i = 0; i < reversed_temp_stack.size(); i++)
@@ -181,7 +181,7 @@ void network::driver(string filename)
 //					reversed_temp_stack.pop();
 //				}
 
-				temp_packet.get_packets_path().set_vertices(reversed_temp_stack);
+//				temp_packet.get_packets_path().set_vertices(reversed_temp_stack);
 				
 				// Grab the shortest path out of distances (ie. the next_hop)
 				/*		
@@ -217,12 +217,12 @@ void network::driver(string filename)
 						cout << endl << endl << "*****END DISTS*****" << endl;								
 				*/
 
-				temp_vertex = reversed_temp_stack.top();
-				temp_packet.get_packets_path().set_vertices(reversed_temp_stack);
-				while (!reversed_temp_stack.empty())
-				{
-					reversed_temp_stack.pop();
-				}
+//				temp_vertex = reversed_temp_stack.top();
+//				temp_packet.get_packets_path().set_vertices(reversed_temp_stack);
+//				while (!reversed_temp_stack.empty())
+//				{
+//					reversed_temp_stack.pop();
+//				}
 				
 				// Determine next intermediary node
 				  // Check path?
