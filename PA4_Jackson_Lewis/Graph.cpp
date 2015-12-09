@@ -100,7 +100,7 @@ path graph::computeShortestPath(path start , int starting_vertex, int ending_ver
 				if (top.get_vertices().top().get_id() == ending_vertex)
 				{
 //cout << endl << endl << "*****END DIJKSTRAS*****" << endl << endl;
-					return ;
+					return  dijkstra_queue.top();
 				}
 				
 //cout << endl << endl << "vertex top(id): " << top.get_id();
@@ -110,16 +110,17 @@ path graph::computeShortestPath(path start , int starting_vertex, int ending_ver
 				//push on outgoing edges
 				for (auto item : top.get_vertices().top().get_edges())
 				{
-					vertex *next = item.first;
-					int weight = item.second * top.get_load_factor();
+					path next;
+						next._vertices.push(*item.first);
+					int weight = item.second * top.get_vertices().top().get_load_factor();
 // Prints the wight equation..	//cout << endl << "Weight = " << item.second << " * " << top.get_load_factor();
 
-					next->set_path_weight(weight + current_path_weight);
+					next.get_vertices().top().set_path_weight(weight + current_path_weight);
 
 					//not known?  add to heap
-					if (distances.find(*next) == distances.end())
+					if (distances.find(next._vertices.top()) == distances.end())
 					{
-						dijkstra_queue.push(*next);
+						dijkstra_queue.push(next);
 					}
 				}
 			}
@@ -152,5 +153,5 @@ path graph::computeShortestPath(path start , int starting_vertex, int ending_ver
 
 
 
-	return temp_stack;
+	return dijkstra_queue.top();
 }
