@@ -49,7 +49,7 @@ void graph::set_vertices(unordered_map<int, vertex> new_vertices)
 }
 
 // Methods
-stack<vertex> graph::computeShortestPath(path start , int starting_vertex, int ending_vertex)
+path graph::computeShortestPath(path start , int starting_vertex, int ending_vertex)
 {
 	/*
 	A note on Dijkstra's Algorithm
@@ -64,9 +64,7 @@ stack<vertex> graph::computeShortestPath(path start , int starting_vertex, int e
 	
 	//holds known distances
 	unordered_map<vertex, int> distances;
-	stack<vertex> temp_stack;
-	
-	path for_the_stack;
+
 	//underlying heap
 	priority_queue<path, vector<path>, PathWeightComparer> dijkstra_queue{};
 
@@ -80,7 +78,7 @@ stack<vertex> graph::computeShortestPath(path start , int starting_vertex, int e
 	if (_vertices.find(start.get_vertices().top().get_id()) != _vertices.end())
 	{
 		//push on starting vertex
-		dijkstra_queue.push(start.get_vertices().top());
+		dijkstra_queue.push(start);
 //cout << endl << "Push on start(id): " << start.get_id();
 
 
@@ -90,20 +88,19 @@ stack<vertex> graph::computeShortestPath(path start , int starting_vertex, int e
 			//push on outgoing edges that haven't been discovered
 			path top = dijkstra_queue.top();
 			dijkstra_queue.pop();
-			temp_stack.push(top); //PUSH where we went
 
 			//Top of heap not known (in distances)?
-			if (distances.find(top) == distances.end())
+			if (distances.find(top.get_vertices().top()) == distances.end())
 			{
 				//cout << top.get_load_factor() << endl;
 				//make known
-				int current_path_weight = top.getPathWeight() * top.get_load_factor();
+				int current_path_weight = top.get_vertices().top().getPathWeight() * top.get_vertices().top().get_load_factor();
 				//cout << "Current path weight: " << current_path_weight << endl;
-				distances[top] = current_path_weight;
-				if (top.get_id() == ending_vertex)
+				distances[top.get_vertices().top()] = current_path_weight;
+				if (top.get_vertices().top().get_id() == ending_vertex)
 				{
 //cout << endl << endl << "*****END DIJKSTRAS*****" << endl << endl;
-					return temp_stack;
+					return ;
 				}
 				
 //cout << endl << endl << "vertex top(id): " << top.get_id();
@@ -111,7 +108,7 @@ stack<vertex> graph::computeShortestPath(path start , int starting_vertex, int e
 //cout << endl << "vertex top(LF): " << top.get_load_factor();
 
 				//push on outgoing edges
-				for (auto item : top.get_edges())
+				for (auto item : top.get_vertices().top().get_edges())
 				{
 					vertex *next = item.first;
 					int weight = item.second * top.get_load_factor();
