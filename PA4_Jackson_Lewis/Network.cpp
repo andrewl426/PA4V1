@@ -156,14 +156,14 @@ void network::driver(string filename)
 				//temp_packet.set_current_wait(temp_packet.get_current_wait()	* temp_packet.get_next_hop()->getPathWeight()); //trying to update current wait
 				temp_packet.set_current_wait(temp_packet.get_next_hop()->getPathWeight() * temp_packet.get_next_hop()->get_load_factor()); // New set wait...
 				
-				// set temp path equal to old starting vertex
-				temp_path.get_vertices().push(_graph.get_vertices().at(starting_vertex));
-
 				for (int i = 0; i < temp_path.get_vertices().size(); i++)
 				{
 					temp_path.get_vertices().pop();
 				}
 
+				// set temp path equal to old starting vertex
+				temp_path.get_vertices().push(_graph.get_vertices().at(starting_vertex));
+				
 				// Compute the shortest route
 				temp_path = _graph.computeShortestPath(temp_path, _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
 				
@@ -299,13 +299,13 @@ void network::driver(string filename)
 					if (in_the_network[i].get_previous_location()->get_id() != ending_vertex)
 					{
 						// Schedule another transmission
-						// set temp path equal to old starting vertex
-						temp_path.get_vertices().push(_graph.get_vertices().at(starting_vertex));
-
 						for (int i = 0; i < temp_path.get_vertices().size(); i++)
 						{
 							temp_path.get_vertices().pop();
 						}
+
+						// set temp path equal to old starting vertex
+						temp_path.get_vertices().push(_graph.get_vertices().at(starting_vertex));
 
 						// Compute the shortest route
 						temp_path = _graph.computeShortestPath(temp_path, _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
