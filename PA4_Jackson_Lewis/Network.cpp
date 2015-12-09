@@ -74,6 +74,7 @@ void network::driver(string filename)
 	stack<vertex> temp_stack;
 	stack<vertex> reversed_temp_stack;
 	path temp_path;
+	unordered_map<vertex, path> temp_map;
 
 	// Run file processor
 	file_processor(filename);
@@ -167,7 +168,7 @@ void network::driver(string filename)
 				temp_path.push_vertex(_graph.get_vertices().at(starting_vertex));
 				
 				// Compute the shortest route
-				 = _graph.computeShortestPath(temp_packet.get_previous_location(), _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
+				temp_map = _graph.computeShortestPath(temp_packet.get_previous_location(), _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
 				
 				temp_packet.set_packets_path(temp_path);
 
