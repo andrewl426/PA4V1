@@ -49,7 +49,7 @@ void graph::set_vertices(unordered_map<int, vertex> new_vertices)
 }
 
 // Methods
-stack<vertex> graph::computeShortestPath(vertex start , int starting_vertex, int ending_vertex)
+stack<vertex> graph::computeShortestPath(path start , int starting_vertex, int ending_vertex)
 {
 	/*
 	A note on Dijkstra's Algorithm
