@@ -171,7 +171,6 @@ void network::driver(string filename)
 				temp_map = _graph.computeShortestPath(temp_packet.get_previous_location(), _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
 				
 				temp_packet.set_packets_path(temp_map[temp_packet.get_destination()]);
-	temp_packet.set_packets_path(temp_map.at(_graph.get_vertices().at(temp_packet.get_destination()->get_id())));
 
 				// Reverse stack
 //				while (!temp_stack.empty())
