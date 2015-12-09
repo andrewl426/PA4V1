@@ -153,6 +153,8 @@ void network::driver(string filename)
 			// If msg has more packets to send, queue the next packet for transmission at the starting location
 			if (!message_item.get_packets().empty())
 			{
+				temp_packet = message_item.pop_packet();
+
 				//temp_packet.set_current_wait(temp_packet.get_current_wait()	* temp_packet.get_next_hop()->getPathWeight()); //trying to update current wait
 				temp_packet.set_current_wait(temp_packet.get_next_hop()->getPathWeight() * temp_packet.get_next_hop()->get_load_factor()); // New set wait...
 				
@@ -228,7 +230,6 @@ void network::driver(string filename)
 				
 				// Determine next intermediary node
 				  // Check path?
-				//temp_packet = message_item.pop_packet();
 
 				temp_packet.set_previous_location(_graph.get_vertices().at(temp_packet.get_next_hop()->get_id()));//initializiing temp packet
 				temp_packet.set_next_hop(_graph.get_vertices().at(temp_packet.get_packets_path().get_vertices().top().get_id()));
