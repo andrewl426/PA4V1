@@ -228,7 +228,7 @@ void network::driver(string filename)
 				
 				// Determine next intermediary node
 				  // Check path?
-				temp_packet = message_item.pop_packet();
+				//temp_packet = message_item.pop_packet();
 
 				temp_packet.set_previous_location(_graph.get_vertices().at(temp_packet.get_next_hop()->get_id()));//initializiing temp packet
 				temp_packet.set_next_hop(_graph.get_vertices().at(temp_packet.get_packets_path().get_vertices().top().get_id()));
@@ -374,11 +374,11 @@ void network::driver(string filename)
 						// Check path?
 						if (!message_item.get_packets().empty())
 						{
-							in_the_network[i] = message_item.pop_packet();
+							//in_the_network[i] = message_item.pop_packet();
 						}
 
 						in_the_network[i].set_previous_location(_graph.get_vertices().at(in_the_network[i].get_next_hop()->get_id()));//initializiing temp packet
-						in_the_network[i].set_next_hop(_graph.get_vertices().at(temp_vertex.get_id()));
+						in_the_network[i].set_next_hop(_graph.get_vertices().at(temp_packet.get_packets_path().get_vertices().top().get_id()));
 						//temp_packet.get_previous_location()->set_edges();
 
 						// Queue the packets arrival at the proper time
