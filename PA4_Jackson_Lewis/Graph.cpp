@@ -27,7 +27,7 @@ graph::graph()
 {
 	//_vertices = empty!
 }
-graph::graph(unordered_map<int, vertex*> new_vertices)
+graph::graph(unordered_map<int, vertex> new_vertices)
 {
 	_vertices = new_vertices;
 }
@@ -37,13 +37,13 @@ graph::graph(unordered_map<int, vertex*> new_vertices)
 // Destructor
 
 // Getters
-unordered_map<int, vertex*> graph::get_vertices() const
+unordered_map<int, vertex> graph::get_vertices() const
 {
 	return _vertices;
 }
 
 // Setters
-void graph::set_vertices(unordered_map<int, vertex*> new_vertices)
+void graph::set_vertices(unordered_map<int, vertex> new_vertices)
 {
 	_vertices = new_vertices;
 }
