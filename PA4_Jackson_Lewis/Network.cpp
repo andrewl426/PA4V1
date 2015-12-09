@@ -232,7 +232,7 @@ void network::driver(string filename)
 				  // Check path?
 
 				temp_packet.set_previous_location(_graph.get_vertices().at(temp_packet.get_next_hop()->get_id()));//initializiing temp packet
-				temp_packet.set_next_hop(_graph.get_vertices().at(temp_packet.get_packets_path().get_vertices().top().get_id()));
+				temp_packet.set_next_hop(_graph.get_vertices().at(temp_vertex.get_id()));
 				//temp_packet.get_previous_location()->set_edges();
 
 				// Queue the packets arrival at the proper time
