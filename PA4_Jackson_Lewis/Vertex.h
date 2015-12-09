@@ -10,6 +10,7 @@
 
 // Includes
 #include "Includes.h"
+#include "Path.h"
 
 // Class definition
 class vertex
@@ -21,6 +22,7 @@ public:
 	int _load_factor;
 	int _path_weight;
 	static int _id_counter;
+	path vert_path;
 
 	// Constructors
 	vertex();
@@ -35,12 +37,14 @@ public:
 	unordered_map<vertex*, int> get_edges();
 	int get_load_factor();
 	int getPathWeight() const;
+	path get_vert_path();
 
 	// Setters
 	void set_id(int new_id);
 	void set_edges(unordered_map<vertex*, int> new_edges);
 	void set_load_factor(int new_load_factor);
 	void set_path_weight(int new_weight);
+	void set_vert_path(path new_path);
 
 	// Methods
 private:
