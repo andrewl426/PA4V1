@@ -43,9 +43,9 @@ private:
 class PathWeightComparer
 {
 public:
-	bool operator()(const path lhs, const path rhs)
+	bool operator()(const vertex lhs, const vertex rhs)
 	{
-		return (lhs.get_vertices().top().getPathWeight() > rhs.get_vertices().top().getPathWeight());
+		return (lhs.getPathWeight() > rhs.getPathWeight());
 	}
 };
 
