@@ -49,9 +49,9 @@ void graph::set_vertices(unordered_map<int, vertex> new_vertices)
 }
 
 // Methods
-path graph::computeShortestPath(path start , int starting_vertex, int ending_vertex)
+unordered_map<vertex, path> graph::computeShortestPath(vertex *start , int starting_vertex, int ending_vertex)
 {
-	/*
+	/*a
 	A note on Dijkstra's Algorithm
 	__________________________________________________________________________________________
 	We are using a node's "load factor" to indicate the speed at which a given node operates.
@@ -63,22 +63,24 @@ path graph::computeShortestPath(path start , int starting_vertex, int ending_ver
 	*/
 	
 	//holds known distances
-	unordered_map<vertex, int> distances;
+	unordered_map<vertex, path> distances;
 
 	//underlying heap
-	priority_queue<path, vector<path>, PathWeightComparer> dijkstra_queue{};
+	priority_queue<vertex, vector<vertex>, PathWeightComparer> dijkstra_queue{};
+
+	start->set_path_weight(0);
+	//reset path
 
 //cout << endl << "*****STA DIJKSTRAS*****" << endl;
 
 	//reset start's path weight
-	start.get_vertices().top().set_path_weight(0);
 //cout << endl << "start.path_weight: " << start.getPathWeight();
 
 	//make sure that the starting vertex is in the graph
-	if (_vertices.find(start.get_vertices().top().get_id()) != _vertices.end())
+	if (_vertices.find(start->get_id()) != _vertices.end())
 	{
 		//push on starting vertex
-		dijkstra_queue.push(start);
+		dijkstra_queue.push(*start);
 //cout << endl << "Push on start(id): " << start.get_id();
 
 
@@ -86,15 +88,17 @@ path graph::computeShortestPath(path start , int starting_vertex, int ending_ver
 		while (dijkstra_queue.empty() == false)
 		{
 			//push on outgoing edges that haven't been discovered
-			path top = dijkstra_queue.top();
+			vertex top = dijkstra_queue.top();
 			dijkstra_queue.pop();
 
 			//Top of heap not known (in distances)?
-			if (distances.find(top.get_vertices().top()) == distances.end())
+			if (distances.find(top) == distances.end())
 			{
 				//cout << top.get_load_factor() << endl;
 				//make known
-				int current_path_weight = top.get_vertices().top().getPathWeight() * top.get_vertices().top().get_load_factor();
+				int current_path_weight = top.getPathWeight();
+				path temp_path = top.;
+
 				//cout << "Current path weight: " << current_path_weight << endl;
 				distances[top.get_vertices().top()] = current_path_weight;
 				if (top.get_vertices().top().get_id() == ending_vertex)
