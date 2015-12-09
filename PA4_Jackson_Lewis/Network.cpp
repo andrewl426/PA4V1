@@ -299,18 +299,19 @@ void network::driver(string filename)
 					if (in_the_network[i].get_previous_location()->get_id() != ending_vertex)
 					{
 						// Schedule another transmission
-						for (int i = 0; i < temp_path.get_vertices().size(); i++)
-						{
-							temp_path.get_vertices().pop();
-						}
 
-						// set temp path equal to old starting vertex
-						temp_path.push_vertex(_graph.get_vertices().at(starting_vertex));
-
-						// Compute the shortest route
-						temp_path = _graph.computeShortestPath(temp_path, _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
-
-						temp_packet.set_packets_path(temp_path);
+//						for (int i = 0; i < temp_path.get_vertices().size(); i++)
+//						{
+//							temp_path.get_vertices().pop();
+//						}
+//
+//						// set temp path equal to old starting vertex
+//						temp_path.push_vertex(_graph.get_vertices().at(starting_vertex));
+//
+//						// Compute the shortest route
+//						temp_path = _graph.computeShortestPath(temp_path, _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
+//
+//						temp_packet.set_packets_path(temp_path);
 
 						// Reverse stack
 //						while (!temp_stack.empty())
@@ -406,7 +407,7 @@ void network::driver(string filename)
 					//cout << in_the_network[i].get_destination()->get_id() << " " << ending_vertex << endl;
 					//system("PAUSE");
 					// If packet has reached destination, add to list of completed packets
-					if (in_the_network[i].get_destination()->get_id() == ending_vertex)
+					if (in_the_network[i].get_previous_location()->get_id() == ending_vertex)
 					{
 						// push this packet to completed packets
 						completed_packets.push_back(in_the_network[i]);
