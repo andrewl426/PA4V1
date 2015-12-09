@@ -73,14 +73,14 @@ stack<vertex> graph::computeShortestPath(path start , int starting_vertex, int e
 //cout << endl << "*****STA DIJKSTRAS*****" << endl;
 
 	//reset start's path weight
-	start.set_path_weight(0);
+	start.get_vertices().top().set_path_weight(0);
 //cout << endl << "start.path_weight: " << start.getPathWeight();
 
 	//make sure that the starting vertex is in the graph
-	if (_vertices.find(start.get_id()) != _vertices.end())
+	if (_vertices.find(start.get_vertices().top().get_id()) != _vertices.end())
 	{
 		//push on starting vertex
-		dijkstra_queue.push(start);
+		dijkstra_queue.push(start.get_vertices().top());
 //cout << endl << "Push on start(id): " << start.get_id();
 
 
