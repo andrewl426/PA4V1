@@ -159,8 +159,13 @@ void network::driver(string filename)
 				// set temp path equal to old starting vertex
 				temp_path.get_vertices().push(_graph.get_vertices().at(starting_vertex));
 
+				for (int i = 0; i < temp_path.get_vertices().size(); i++)
+				{
+					temp_path.get_vertices().pop();
+				}
+
 				// Compute the shortest route
-				temp_stack = _graph.computeShortestPath(temp_path, _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
+				temp_path = _graph.computeShortestPath(temp_path, _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
 				
 				// Reverse stack
 				while (!temp_stack.empty())
@@ -295,8 +300,13 @@ void network::driver(string filename)
 						// set temp path equal to old starting vertex
 						temp_path.get_vertices().push(_graph.get_vertices().at(starting_vertex));
 
+						for (int i = 0; i < temp_path.get_vertices().size(); i++)
+						{
+							temp_path.get_vertices().pop();
+						}
+
 						// Compute the shortest route
-						temp_stack = _graph.computeShortestPath(temp_path, _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
+						temp_path = _graph.computeShortestPath(temp_path, _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
 
 						// Reverse stack
 						while (!temp_stack.empty())
