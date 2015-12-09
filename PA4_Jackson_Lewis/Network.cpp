@@ -70,7 +70,7 @@ void network::driver(string filename)
 	int ending_vertex;
 	int ticker = 0;
 	unordered_map<vertex, int> distances;
-	vertex temp_vertex;
+	vertex* temp_vertex;
 	stack<vertex> temp_stack;
 	stack<vertex> reversed_temp_stack;
 	path temp_path;
@@ -158,18 +158,20 @@ void network::driver(string filename)
 				//temp_packet.set_current_wait(temp_packet.get_current_wait()	* temp_packet.get_next_hop()->getPathWeight()); //trying to update current wait
 				temp_packet.set_current_wait(temp_packet.get_next_hop()->getPathWeight() * temp_packet.get_next_hop()->get_load_factor()); // New set wait...
 				
-				for (int i = 0; i < temp_path.get_vertices().size(); i++)
-				{
-					temp_path.get_vertices().pop();
-				}
+//				for (int i = 0; i < temp_path.get_vertices().size(); i++)
+//				{
+//					temp_path.get_vertices().pop();
+//				}
 
 				// set temp path equal to old starting vertex
-				temp_path.push_vertex(_graph.get_vertices().at(starting_vertex));
-				
+//				temp_path.push_vertex(_graph.get_vertices().at(starting_vertex));
+	
+				temp_vertex = _graph.get_vertices().at(starting_vertex);
+
 				// Compute the shortest route
-				temp_path = _graph.computeShortestPath(temp_path, _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
+				temp_vertex = _graph.computeShortestPath(temp_vertex, _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
 				
-				temp_packet.set_packets_path(temp_path);
+//				temp_packet.set_packets_path(temp_path);
 
 				// Reverse stack
 //				while (!temp_stack.empty())
