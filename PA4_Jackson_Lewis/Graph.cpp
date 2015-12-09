@@ -68,7 +68,7 @@ stack<vertex> graph::computeShortestPath(vertex start , int starting_vertex, int
 	
 	path for_the_stack;
 	//underlying heap
-	priority_queue<vertex, vector<vertex>, PathWeightComparer> dijkstra_queue{};
+	priority_queue<path, vector<path>, PathWeightComparer> dijkstra_queue{};
 
 //cout << endl << "*****STA DIJKSTRAS*****" << endl;
 
@@ -88,7 +88,7 @@ stack<vertex> graph::computeShortestPath(vertex start , int starting_vertex, int
 		while (dijkstra_queue.empty() == false)
 		{
 			//push on outgoing edges that haven't been discovered
-			vertex top = dijkstra_queue.top();
+			path top = dijkstra_queue.top();
 			dijkstra_queue.pop();
 			temp_stack.push(top); //PUSH where we went
 
