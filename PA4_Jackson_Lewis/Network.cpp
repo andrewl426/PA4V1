@@ -167,6 +167,8 @@ void network::driver(string filename)
 				// Compute the shortest route
 				temp_path = _graph.computeShortestPath(temp_path, _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
 				
+				temp_packet.set_packets_path(temp_path);
+
 				// Reverse stack
 //				while (!temp_stack.empty())
 //				{
@@ -308,12 +310,14 @@ void network::driver(string filename)
 						// Compute the shortest route
 						temp_path = _graph.computeShortestPath(temp_path, _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
 
+						temp_packet.set_packets_path(temp_path);
+
 						// Reverse stack
-						while (!temp_stack.empty())
-						{
-							reversed_temp_stack.push(temp_stack.top());
-							temp_stack.pop();
-						}
+//						while (!temp_stack.empty())
+//						{
+//							reversed_temp_stack.push(temp_stack.top());
+//							temp_stack.pop();
+//						}
 
 						// Print all of stack...
 //						for (int i = 0; i < reversed_temp_stack.size(); i++)
@@ -322,7 +326,7 @@ void network::driver(string filename)
 //							reversed_temp_stack.pop();
 //						}
 
-						in_the_network[i].get_packets_path().set_vertices(reversed_temp_stack);
+//						in_the_network[i].get_packets_path().set_vertices(reversed_temp_stack);
 
 						// Grab the shortest path out of distances (ie. the next_hop)
 						/*
@@ -357,12 +361,10 @@ void network::driver(string filename)
 						}
 						cout << endl << endl << "*****END DISTS*****" << endl;
 						*/
-
 						
-						reversed_temp_stack.pop();
-						temp_vertex = reversed_temp_stack.top();
-						
-						in_the_network[i].get_packets_path().set_vertices(reversed_temp_stack);
+//						reversed_temp_stack.pop();
+//						temp_vertex = reversed_temp_stack.top();
+//					in_the_network[i].get_packets_path().set_vertices(reversed_temp_stack);
 						//while (!reversed_temp_stack.empty())
 						//{
 						//	reversed_temp_stack.pop();
