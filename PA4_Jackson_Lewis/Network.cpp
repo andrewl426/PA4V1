@@ -167,7 +167,7 @@ void network::driver(string filename)
 				temp_path.push_vertex(_graph.get_vertices().at(starting_vertex));
 				
 				// Compute the shortest route
-				temp_path = _graph.computeShortestPath(temp_path, _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
+				 = _graph.computeShortestPath(temp_packet.get_previous_location(), _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
 				
 				temp_packet.set_packets_path(temp_path);
 
