@@ -162,7 +162,7 @@ void network::driver(string filename)
 				}
 
 				// set temp path equal to old starting vertex
-				temp_path.get_vertices().push(_graph.get_vertices().at(starting_vertex));
+				temp_path.push_vertex(_graph.get_vertices().at(starting_vertex));
 				
 				// Compute the shortest route
 				temp_path = _graph.computeShortestPath(temp_path, _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
@@ -305,7 +305,7 @@ void network::driver(string filename)
 						}
 
 						// set temp path equal to old starting vertex
-						temp_path.get_vertices().push(_graph.get_vertices().at(starting_vertex));
+						temp_path.push_vertex(_graph.get_vertices().at(starting_vertex));
 
 						// Compute the shortest route
 						temp_path = _graph.computeShortestPath(temp_path, _graph.get_vertices().at(starting_vertex).get_id(), temp_packet.get_destination()->get_id());
